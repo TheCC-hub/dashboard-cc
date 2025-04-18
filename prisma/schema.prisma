@@ -1,0 +1,56 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  name           String?
+  email          String    @unique
+  emailVerified  DateTime?
+  image          String?
+  password       String?
+  youtubeChannel String?
+  orders         Order[]
+}
+
+// model YoutubeChannels {
+//   id          String @id @default(auto()) @map("_id")
+//   userId      String
+//   channelName String
+//   user        User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+// }
+
+model Order {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  clientMail String
+  user       User?  @relation(fields: [clientMail], references: [email], onDelete: Cascade)
+
+  orderType        String?
+  rawFootageSize   String?
+  rawFootageLength String?
+
+  // Dynamic object for addons: key = addon title, value = quantity
+  addOns Json? // Example: { "Captions": 1, "Thumbnail": 2 }
+
+  videTitle     String?
+  videoCategory String?
+  publishDate   String?
+  finalLength   String?
+
+  videoTone Json?
+  videoPace String?
+
+  instructionByClient String?
+  exampleVideos       String?
+  scriptLink          String?
+  rawFootageUrl       String?
+
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+  status    String   @default("pending")
+}
