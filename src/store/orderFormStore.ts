@@ -4,12 +4,12 @@ import { create } from 'zustand'
 export interface OrderInterface {
     order_id: string
     order_type: string
-    video_amount?: number
+    order_quantity?: number
     video_footage: {
         raw_footage_size: string
         raw_footage_length: string
     }
-    add_ons?: {
+    add_ons: {
         title: string
         number: number
     }[]
@@ -48,7 +48,7 @@ const defaultStages: FormStage[] = [
     { title: "Start Your Order", active: true },
     { title: "Order Type", active: true },
     { title: "Video Footage", active: false },
-    { title: "Add Ons", active: true },
+    { title: "Add Ons", active: false },
     { title: "Logistics", active: true },
     { title: "Style Details", active: true },
     { title: "Order Details", active: true },
@@ -71,12 +71,19 @@ interface OrderFormState {
 const defaultOrder: OrderInterface = {
     order_id: '',
     order_type: '',
-    video_amount: 0,
+    order_quantity: 1,
     video_footage: {
         raw_footage_size: '',
         raw_footage_length: ''
     },
-    add_ons: [],
+    add_ons: [
+        { title: 'Thumbnail', number: 0 },
+        { title: 'Vertical Reformat', number: 0 },
+        { title: 'Square Reformat', number: 0 },
+        { title: 'Horizontal Reformat', number: 0 },
+        { title: 'Full Video Captions', number: 0 },
+        { title: 'Premiere Pro Project File', number: 0 },
+    ],
     logistics: {
         video_title: '',
         video_category: '',

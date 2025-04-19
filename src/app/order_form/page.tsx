@@ -22,8 +22,8 @@ import { useOrderFormStore } from '@/store/orderFormStore';
 export default function OrderForm() {
 
     const { data: session, status } = useSession();
-    const { currentStep } = useOrderFormStore()
-
+    const { currentStep, order } = useOrderFormStore()
+    console.log(order, "this is order in order form")
     const searchParams = useSearchParams();
     const router = useRouter();
     const pathname = usePathname();
@@ -48,7 +48,7 @@ export default function OrderForm() {
 
     return (
         <Suspense>
-            <div className='py-8 flex items-center justify-center px-10 w-full min-h-screen h-screen text-black relative bg-pink-300'>
+            <div className='py-8 flex items-center justify-center px-10 w-full min-h-screen h-screen text-black relative bg-blue-500/30'>
 
                 {notAuthenticated &&
                     <div className='absolute top-0 left-0 w-full h-full bg-black/50 z-10 flex items-center justify-center dark:text-white'>
@@ -56,18 +56,19 @@ export default function OrderForm() {
                     </div>
                 }
 
-                <div className='flex items-center bg-white rounded-2xl w-full h-full overflow-hidden'>
+                <div className='flex items-center bg-white rounded-2xl w-full h-full overflow-hidden border border-red-500'>
                     {/* form index */}
-                    <div className='h-full max-w-[250px] px-4 py-6 bg-gray-100 text-[var(--color-brand-red)] flex flex-col items-center justify-between'>
-                        <div className=''>
-                            <Link href={"/"} className='text-3xl hover:text-4xl transform duration-300 ease-in-out hover:font-bold'>ClipCurve</Link>
-                        </div>
+                    <div className='h-full max-w-[250px] px-4 py-6 bg-gray-100 border-r border-gray-400 text-[var(--color-brand-red)] flex flex-col items-center justify-between'>
+                        <div className='w-full flex-col flex items-center justify-center'>
+                            <div className=' h-12'>
+                                <Link href={"/"} className='text-3xl hover:text-4xl transform duration-300 ease-in-out hover:font-bold'>ClipCurve</Link>
+                            </div>
 
-                        {/* progress bar  */}
-                        <div className='w-full flex items-center justify-center mx-10 mt-10'>
-                            <ProgressBar currentStep={currentStep} />
+                            {/* progress bar  */}
+                            <div className='w-full flex items-center justify-center mx-10 mt-10'>
+                                <ProgressBar currentStep={currentStep} />
+                            </div>
                         </div>
-
                         {/* user profile  */}
                         <div className='w-full flex items-end justify-center mt-10'>
                             <div className='flex items-center justify-center gap-3 relative'>
