@@ -1,9 +1,6 @@
 import React from "react";
-import { CheckCircle, XCircle, Video, FileText, ClipboardList, Link2 } from "lucide-react";
-import { OrderInterface } from "@/types/order.type";
+import { CheckCircle, XCircle, Video, ClipboardList, Link2 } from "lucide-react";
 import NextAndBackButtons from "./nextAndBackButtons";
-import { createOrder } from "@/utils/api-requests";
-import { redirect } from "next/navigation";
 import { useOrderFormStore } from "@/store/orderFormStore";
 
 const OrderSummary = () => {
@@ -81,26 +78,7 @@ const OrderSummary = () => {
                     </div>
                 </Section>
             </div>
-            <NextAndBackButtons
-                disabled={false}
-                nextbuttonName="Submit Order"
-            // handleNext={async () => {
-            //     if (order.order_type === "" || order.logistics.final_length === "" || order.logistics.video_title === "" || order.video_pace === "" || order.raw_footage_url === "") {
-            //         alert("Please fill all the required fields")
-            //         return
-            //     }
-            //     try {
-            //         const res = await createOrder({ ...order, status: "completed" });
-            //         if (res?.ok) {
-            //             alert("Order created successfully");
-            //             // redirect("/");
-            //         }
-            //     } catch (error) {
-            //         console.error("Error creating order:", error);
-            //     }
-            //     return
-            // }}
-            />
+            <NextAndBackButtons disabled={false} />
         </div>
 
     );

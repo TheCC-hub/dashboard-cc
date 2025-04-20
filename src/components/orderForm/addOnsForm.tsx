@@ -45,50 +45,45 @@ export default function AddOnsForm() {
             <div className='flex flex-wrap items-center justify-between gap-6 h-full w-full'>
                 {order.add_ons.map((item: any, idx: number) => {
                     return (
-                        (() => {
-                            return (
+                        <div
+                            key={idx}
+                            className={`w-[31%] h-[44%] p-2 border rounded-2xl text-center relative flex flex-col items-center justify-around gap-2 ${item.number > 0 ? "bg-red-100 border-red-500" : ""}`}
+                        >
+                            {/* <div className={`w-3.5 h-3.5 rounded-full border absolute top-4 right-4 ${item.number > 0 ? "bg-primary" : "bg-gray-200"} `} /> */}
+
+                            <Image src={AddOns[idx].icon} alt='' className='w-14' />
+                            <div>
+                                <h1 className='text-xl font-semibold'>{item.title}</h1>
+                                <p className='text-sm'>{AddOns[idx].description}</p>
+                            </div>
+                            {/* plus minus controller */}
+                            <div className='flex items-center justify-center gap-x-4 mt-2'>
                                 <div
-                                    key={idx}
-                                    className={`w-[31%] h-[44%] p-2 border rounded-2xl text-center relative flex flex-col items-center justify-around gap-2 ${item.number > 0 ? "bg-red-100 border-red-500" : ""}`}
+                                    onClick={() => {
+                                        updateField("add_ons", (order.add_ons).map((i: any) =>
+                                            i.title === item.title ? { ...i, number: item.number - 1 } : i // Update only the matched item
+                                        ));
+                                    }}
+                                    className='text-2xl cursor-pointer hover:text-primary flex items-center justify-center'
                                 >
-                                    {/* <div className={`w-3.5 h-3.5 rounded-full border absolute top-4 right-4 ${item.number > 0 ? "bg-primary" : "bg-gray-200"} `} /> */}
-
-                                    <Image src={AddOns[idx].icon} alt='' className='w-14' />
-                                    <div>
-                                        <h1 className='text-xl font-semibold'>{item.title}</h1>
-                                        <p className='text-sm'>{AddOns[idx].description}</p>
-                                    </div>
-                                    {/* plus minus controller */}
-                                    <div className='flex items-center justify-center gap-x-4 mt-2'>
-                                        <div
-                                            onClick={() => {
-                                                updateField("add_ons", (order.add_ons).map((i: any) =>
-                                                    i.title === item.title ? { ...i, number: item.number - 1 } : i // Update only the matched item
-                                                ));
-                                            }}
-                                            className='text-2xl cursor-pointer hover:text-primary flex items-center justify-center'
-                                        >
-                                            <CiCircleMinus />
-                                        </div>
-
-                                        <div>{item.number}</div>
-
-                                        <div
-                                            onClick={() => {
-                                                updateField("add_ons", (order.add_ons).map((i: any) =>
-                                                    i.title === item.title ? { ...i, number: item.number + 1 } : i // Update only the matched item
-                                                ));
-                                            }}
-                                            className='text-2xl cursor-pointer hover:text-primary flex items-center justify-center'
-
-                                        >
-                                            <CiCirclePlus />
-                                        </div>
-                                    </div>
+                                    <CiCircleMinus />
                                 </div>
-                            )
-                        })()
 
+                                <div>{item.number}</div>
+
+                                <div
+                                    onClick={() => {
+                                        updateField("add_ons", (order.add_ons).map((i: any) =>
+                                            i.title === item.title ? { ...i, number: item.number + 1 } : i // Update only the matched item
+                                        ));
+                                    }}
+                                    className='text-2xl cursor-pointer hover:text-primary flex items-center justify-center'
+
+                                >
+                                    <CiCirclePlus />
+                                </div>
+                            </div>
+                        </div>
                     )
                 })}
             </div>

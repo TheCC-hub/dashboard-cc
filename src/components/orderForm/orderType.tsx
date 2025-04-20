@@ -42,7 +42,12 @@ export default function OrderType() {
 
         }
     }
-
+    useEffect(() => {
+        if (order.order_type == "Horizontal Video" || order.order_type === "Vertical Video" || order.order_type === "Square Video") {
+            setFormStageActive("Add Ons", true)
+            setFormStageActive("Video Footage", true)
+        }
+    }, [])
     return (
         <div className='w-full h-full'>
             {videoCountPopup &&

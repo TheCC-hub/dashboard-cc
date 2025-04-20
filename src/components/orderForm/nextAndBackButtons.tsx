@@ -3,17 +3,21 @@ import { createOrder } from '@/utils/api-requests'
 import React, { useRef } from 'react'
 import isEqual from "lodash.isequal";
 import { useOrderFormStore } from '@/store/orderFormStore';
+import { redirect } from "next/navigation";
 
-export default function NextAndBackButtons({ disabled, nextbuttonName }: { disabled: boolean, nextbuttonName?: string }) {
-    const { formStages, currentStep, setCurrentStep, order } = useOrderFormStore()
+export default function NextAndBackButtons({ disabled }: { disabled: boolean }) {
+    const { formStages, currentStep, setCurrentStep, order, updateField } = useOrderFormStore()
 
     const lastSavedRef = useRef(order)
 
-    const updateIdDataChanges = (order: any) => {
+    const updateIdDataChanges = async (order: any) => {
         if (!isEqual(order, lastSavedRef.current)) {
             // 🔄 Data changed, call update
             console.log("Data changed → calling update function...");
-            // createOrder(order);
+            const res = await createOrder(order);
+            const data = await res?.json();
+            console.log(data)
+            if (!order.order_id) { updateField("order_id", data.id) }
             lastSavedRef.current = order; // update reference
         } else {
             console.log("No changes detected → skipping update");
@@ -61,12 +65,18 @@ export default function NextAndBackButtons({ disabled, nextbuttonName }: { disab
             <button
                 className="px-4 py-2 bg-[var(--color-brand-red)] text-white rounded cursor-pointer"
                 onClick={() => {
-                    handleNext()
-                    updateIdDataChanges(order)
+                    if (currentStep === 8) {
+                        updateIdDataChanges({ ...order, status: "completed" })
+                        alert("Order created successfully");
+                        redirect("/");
+                    } else {
+                        handleNext()
+                        updateIdDataChanges(order)
+                    }
                 }}
                 disabled={disabled}
             >
-                {nextbuttonName ? nextbuttonName : "Next"}
+                {currentStep == 8 ? "Submit Order" : "Next"}
             </button>
         </div >
     )

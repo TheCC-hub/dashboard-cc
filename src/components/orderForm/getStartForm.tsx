@@ -9,37 +9,37 @@ import { useOrderFormStore } from '@/store/orderFormStore';
 
 export default function GetStartForm() {
     const { data: session } = useSession()
-    const { updateField, setCurrentStep, updatePartial } = useOrderFormStore()
+    const { setCurrentStep, updatePartial } = useOrderFormStore()
 
     const [allOrders, setAllOrders] = useState<any>([])
 
-    // const getAllPendingOrders = async () => {
-    //     try {
-    //         const res = await fetch("/api/orders/pending", {
-    //             method: "GET",
-    //         })
-    //         const data = await res.json()
+    const getAllPendingOrders = async () => {
+        try {
+            const res = await fetch("/api/orders/draft", {
+                method: "GET",
+            })
+            const data = await res.json()
 
-    //         if (data.status === 200) {
-    //             setAllOrders(data.data)
-    //             console.log(data, "this is GET responce")
-    //             return data.data
-    //         } else {
-    //             console.log("Error getting orders")
-    //             console.log(data)
-    //             setAllOrders([])
+            if (data.status === 200) {
+                setAllOrders(data.data)
+                console.log(data, "this is GET responce")
+                return data.data
+            } else {
+                console.log("Error getting orders")
+                console.log(data)
+                setAllOrders([])
 
-    //             return null
-    //         }
-    //     } catch (error) {
-    //         return null
-    //     }
-    // }
+                return null
+            }
+        } catch (error) {
+            return null
+        }
+    }
 
-    // useEffect(() => {
-    //     const result = getAllPendingOrders()
-    //     setAllOrders(result)
-    // }, [session])
+    useEffect(() => {
+        const result = getAllPendingOrders()
+        setAllOrders(result)
+    }, [session])
     return (
         <div className='h-full w-full'>
             <div className=''>
@@ -52,7 +52,9 @@ export default function GetStartForm() {
                 <div
                     onClick={async () => {
                         if (!session?.user?.email) return
-                        updateField("order_id", String(session?.user?.email) + ("_" + Date.now()))
+                        if (allOrders.length >= 5) {
+                            return
+                        }
                         setCurrentStep(1)
                         return
                     }}
@@ -85,23 +87,17 @@ export default function GetStartForm() {
                                             className="text-sm bg-green-500 text-white px-3 py-1 rounded hover:bg-blue-600"
                                             onClick={() => {
                                                 updatePartial({
-                                                    // ...order,
                                                     order_id: order.id,
                                                     order_type: order.orderType ? order.orderType : "",
                                                     video_footage: {
-                                                        raw_footage_size: order.rawFootageSiz ? order.rawFootageSize : "",
+                                                        raw_footage_size: order.rawFootageSize ? order.rawFootageSize : "",
                                                         raw_footage_length: order.rawFootageLength ? order.rawFootageLength : "",
                                                     },
                                                     add_ons:
-                                                        order.addOns && order.addOns.length > 0
-                                                            ? order.addOns.map((item: any) => ({
-                                                                title: item.title,
-                                                                number: item.number,
-                                                            }))
-                                                            : AddOns.map(item => ({
-                                                                title: item.title,
-                                                                number: item.number,
-                                                            })),
+                                                        Object.keys(order.addOns).map((key: any) => ({
+                                                            title: key,
+                                                            number: order.addOns[key] || 0,
+                                                        })),
 
                                                     logistics: {
                                                         video_title: order.videoTitle ? order.videoTitle : "",
@@ -143,13 +139,13 @@ export default function GetStartForm() {
                                 </div>
                             )
                         }
-                        ) : <p className='text-lg font-semibold'>No abandoned orders</p>}
+                        ) : <p className='text-lg font-semibold'>No Drafts</p>}
                     </div>
                 </div>
             </div>
 
             {/* <NextAndBackButtons setCurrentStep={setCurrentStep} canMoveNext={canMoveNext} /> */}
-        </div>
+        </div >
     )
 }
 
