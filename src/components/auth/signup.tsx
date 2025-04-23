@@ -73,7 +73,7 @@ export default function SignUpForm() {
     };
     return (
         <Suspense>
-            <div className="max-w-md mx-auto bg-white dark:bg-black rounded-2xl shadow-xl p-8 relative">
+            <div className="max-w-md mx-auto bg-white rounded-2xl shadow-xl p-8 relative">
                 {/* cose button  */}
                 <button
                     onClick={closeModal}

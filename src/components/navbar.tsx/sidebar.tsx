@@ -5,18 +5,19 @@ import { usePathname, useSearchParams, useRouter } from 'next/navigation'
 import {
     FileText,
     DollarSign,
-    Youtube,
     MessageCircle,
-    Users,
     HelpCircle,
+    DraftingCompass,
 } from 'lucide-react'
+import { IoCheckmarkDoneSharp } from "react-icons/io5";
+
 
 const menuItems = [
     { name: 'Orders', icon: FileText },
-    { name: 'Edit Credits', icon: DollarSign },
-    { name: 'Channel Management', icon: Youtube },
+    { name: 'Drafts', icon: DraftingCompass },
+    { name: 'Delivered', icon: IoCheckmarkDoneSharp },
     { name: 'Team Chat', icon: MessageCircle },
-    { name: 'Collaborators', icon: Users },
+    { name: 'Prices', icon: DollarSign },
     { name: 'Support', icon: HelpCircle },
 ]
 

@@ -13,16 +13,23 @@ export default function Dashboard() {
         switch (nav) {
             case 'Orders':
                 return <OrdersTable />
-            case 'Edit Credits':
-                return <div>other comp</div>
-            // Add more cases as needed
+            case 'Drafts':
+                return <div>Draft</div>
+            case 'Delivered':
+                return <div>Delivered</div>
+            case 'Team Chat':
+                return <div>Team Chat</div>
+            case 'Prices':
+                return <div>Prices</div>
+            case 'Support':
+                return <div>Support</div>
             default:
                 return <div className="p-4 text-gray-500">Not Found</div>
         }
     }
 
     return (
-        <div className="p-4">
+        <div className="">
             {renderComponent()}
         </div>
     )

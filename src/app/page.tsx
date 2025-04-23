@@ -5,12 +5,42 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { FaRegUser } from "react-icons/fa6";
+import { redirect, usePathname, useRouter, useSearchParams } from "next/navigation";
+import AuthPage from "@/components/auth";
+import router from "next/router";
+import { useEffect } from "react";
 
 export default function Home() {
-  const { data: session } = useSession()
+  const { data: session, status } = useSession()
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname()
+
+  const authMode = searchParams.get("auth");
+  const notAuthenticated = authMode === "login" || authMode === "signup";
+
+
+  useEffect(() => {
+    if (!session && status !== "loading" && !authMode) {
+      const params = new URLSearchParams(searchParams.toString());
+      params.set("auth", "login");
+      router.replace(`${pathname}?${params.toString()}`);
+
+    }
+    if (session && status === "authenticated" && authMode) {
+      const params = new URLSearchParams(searchParams.toString());
+      params.delete("auth");
+      router.replace(`${pathname}?${params.toString()}`);
+    }
+  }, [session, status, pathname, searchParams, authMode]);
 
   return (
     <div className="w-full h-screen bg-red-100 flex">
+      {notAuthenticated &&
+        <div className='absolute top-0 left-0 w-full h-full bg-black/50 z-10 flex items-center justify-center'>
+          <AuthPage authMode={authMode} />
+        </div>
+      }
 
       <div className='h-full max-w-[250px] px-4 py-6 bg-gray-100 border-r border-gray-400 text-[var(--color-brand-red)] flex flex-col items-center justify-between'>
         <div className='w-full flex-col flex items-center justify-center'>
@@ -41,18 +71,7 @@ export default function Home() {
       </div>
 
       <div className="w-full min-h-screen">
-        <div className="w-full bg-white py-5 px-10 border-b border-gray-400 flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl text-black">All Orders</h1>
-            <p>0 current orders</p>
-          </div>
-
-          <button className="text-white text-lg bg-red-500 rounded-lg py-1.5 px-4">Create Order</button>
-        </div>
-
-        <div className="bg-white rounded-xl border mx-10 my-10 border-gray-400 overflow-auto h-[calc(100vh-180px)]">
-          <Dashboard />
-        </div>
+        <Dashboard />
       </div>
 
     </div>

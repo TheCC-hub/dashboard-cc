@@ -61,7 +61,7 @@ export default function LoginForm() {
     };
     return (
         <Suspense>
-            <div className="max-w-md mx-auto bg-white dark:bg-black rounded-2xl shadow-xl p-8 relative">
+            <div className="max-w-md mx-auto bg-white rounded-2xl shadow-xl p-8 relative">
                 <button
                     onClick={closeModal}
                     className="absolute top-4 right-4 text-gray-500 hover:text-gray-800"

@@ -50,7 +50,8 @@ model Order {
   scriptLink          String?
   rawFootageUrl       String?
 
-  updatedAt DateTime @updatedAt
-  createdAt DateTime @default(now())
-  status    String   @default("pending")
+  updatedAt   DateTime @updatedAt
+  createdAt   DateTime @default(now())
+  status      String   @default("pending")
+  nextDraftIn String   @default("waiting")
 }

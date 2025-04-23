@@ -91,3 +91,26 @@ export const getAllDraftsOfUser = async (clientMail: string) => {
 
     return order;
 }
+export const getAllOrdersOfUser = async (clientMail: string) => {
+    const orders = await prisma.order.findMany({
+        where: {
+            clientMail: clientMail,
+            status: {
+                not: "draft",
+            },
+        },
+        select: {
+            id: true,
+            createdAt: true,
+            status: true,
+            orderType: true,
+            nextDraftIn: true
+        },
+    });
+
+    // if (!order) {
+    //     throw new Error("Order not found")
+    // }
+
+    return orders;
+}

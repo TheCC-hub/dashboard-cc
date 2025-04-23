@@ -34,11 +34,11 @@ export function addDaysToDateTime(dateStr: string, days: number = 30): Date {
     return date; // Returns a Date object
 }
 
-export function formatDate(isoString: string) {
-    const date = new Date(isoString);
-    return date.toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-    });
+export function formatDate(isoDate: string) {
+    const date = new Date(isoDate);
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // getMonth is 0-indexed
+    const day = String(date.getDate()).padStart(2, '0');
+    const year = date.getFullYear();
+
+    return `${month}/${day}/${year}`;
 }
