@@ -2,7 +2,11 @@
 'use client'
 
 import { useSearchParams } from 'next/navigation'
-import OrdersTable from './orderTable'
+import ActiveOrdersTable from './activeOrderTable'
+import DraftOrdersTable from './draftOrderTable'
+import DeliveredOrdersTable from './deliveredOrderTable'
+import ContactAndFAQ from './supportTab'
+import PricingSection from '../prices'
 // Add more components as needed
 
 export default function Dashboard() {
@@ -11,18 +15,18 @@ export default function Dashboard() {
 
     const renderComponent = () => {
         switch (nav) {
-            case 'Orders':
-                return <OrdersTable />
+            case 'Active Orders':
+                return <ActiveOrdersTable />
             case 'Drafts':
-                return <div>Draft</div>
+                return <DraftOrdersTable />
             case 'Delivered':
-                return <div>Delivered</div>
+                return <DeliveredOrdersTable />
             case 'Team Chat':
                 return <div>Team Chat</div>
             case 'Prices':
-                return <div>Prices</div>
+                return <PricingSection />
             case 'Support':
-                return <div>Support</div>
+                return <ContactAndFAQ />
             default:
                 return <div className="p-4 text-gray-500">Not Found</div>
         }

@@ -3,11 +3,11 @@ import { redirect } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 
 
-export default function OrderTable() {
+export default function ActiveOrdersTable() {
     const [orders, setOrders] = useState<any[]>([])
     const fetchAllOrders = async () => {
         try {
-            const res = await fetch("/api/orders", {
+            const res = await fetch("/api/orders/active", {
                 method: "GET",
             })
             if (res.ok) {
@@ -39,32 +39,33 @@ export default function OrderTable() {
                 </button>
             </div>
 
-            <div className="bg-white rounded-xl border mx-10 my-10 border-gray-400 overflow-auto h-[calc(100vh-180px)]">
-                <table className="min-w-full h-full divide-y divide-gray-200">
+
+            <div className="bg-white rounded-xl border mx-5 my-8 border-gray-400 overflow-auto h-[calc(100vh-160px)]">
+                <table className="min-w-full divide-y divide-gray-200">
                     <thead className="bg-white">
                         <tr>
-                            <th className="px-6 py-4 text-left font-semibold text-gray-500">Order Id</th>
-                            <th className="px-6 py-4 text-left font-semibold text-gray-500">Order</th>
-                            <th className="px-6 py-4 text-left font-semibold text-gray-500">Status</th>
-                            <th className="px-6 py-4 text-left font-semibold text-gray-500">CreatedAt</th>
-                            <th className="px-6 py-4 text-left font-semibold text-gray-500">Next draft in</th>
+                            <th className="px-6 py-3 text-left font-semibold text-gray-500">Order Id</th>
+                            <th className="px-6 py-3 text-left font-semibold text-gray-500">Title</th>
+                            <th className="px-6 py-3 text-left font-semibold text-gray-500">Order Type</th>
+                            <th className="px-6 py-3 text-left font-semibold text-gray-500">CreatedAt</th>
+                            <th className="px-6 py-3 text-left font-semibold text-gray-500">Next draft in</th>
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-100 bg-white">
                         {orders.length === 0 ? (
-                            <tr>
-                                <td colSpan={5} className="px-6 py-10 text-center text-sm text-gray-400">
+                            <tr className="align-top">
+                                <td colSpan={5} className="px-6 py-6 text-center text-sm text-gray-400">
                                     No orders available.
                                 </td>
                             </tr>
                         ) : (
                             orders.map((order, i) => (
-                                <tr key={i} className=''>
-                                    <td className="px-6 py-4 text-gray-800">{order.id.slice(0, 3)}...{order.id.slice(-3)}</td>
-                                    <td className="px-6 py-4 text-gray-800">{order.orderType}</td>
-                                    <td className="px-6 py-4 text-gray-600">{order.status}</td>
-                                    <td className="px-6 py-4 text-gray-600">{formatDate(order.createdAt)}</td>
-                                    <td className="px-6 py-4 text-gray-600">{order.nextDraftIn}</td>
+                                <tr key={i} className="align-top">
+                                    <td className="px-6 py-3 text-gray-800">{order.id.slice(0, 3)}...{order.id.slice(-3)}</td>
+                                    <td className="px-6 py-3 text-gray-600">{order.status}</td>
+                                    <td className="px-6 py-3 text-gray-800">{order.orderType}</td>
+                                    <td className="px-6 py-3 text-gray-600">{formatDate(order.createdAt)}</td>
+                                    <td className="px-6 py-3 text-gray-600">{order.nextDraftIn}</td>
                                 </tr>
                             ))
                         )}

@@ -66,7 +66,7 @@ export default function NextAndBackButtons({ disabled }: { disabled: boolean }) 
                 className="px-4 py-2 bg-[var(--color-brand-red)] text-white rounded cursor-pointer"
                 onClick={() => {
                     if (currentStep === 8) {
-                        updateIdDataChanges({ ...order, status: "completed" })
+                        updateIdDataChanges({ ...order, status: "Active" })
                         alert("Order created successfully");
                         redirect("/");
                     } else {

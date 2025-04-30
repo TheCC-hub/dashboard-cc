@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { authOptions } from "../auth/[...nextauth]/options";
 
 
-// get all abandent orders of a user 
+// get all abundant orders of a user 
 export async function GET(req: NextRequest) {
     const session = await getServerSession(authOptions)
 

@@ -52,6 +52,6 @@ model Order {
 
   updatedAt   DateTime @updatedAt
   createdAt   DateTime @default(now())
-  status      String   @default("pending")
-  nextDraftIn String   @default("waiting")
+  status      String   @default("Draft")
+  nextDraftIn String   @default("Waiting")
 }

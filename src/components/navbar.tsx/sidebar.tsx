@@ -13,7 +13,7 @@ import { IoCheckmarkDoneSharp } from "react-icons/io5";
 
 
 const menuItems = [
-    { name: 'Orders', icon: FileText },
+    { name: 'Active Orders', icon: FileText },
     { name: 'Drafts', icon: DraftingCompass },
     { name: 'Delivered', icon: IoCheckmarkDoneSharp },
     { name: 'Team Chat', icon: MessageCircle },
