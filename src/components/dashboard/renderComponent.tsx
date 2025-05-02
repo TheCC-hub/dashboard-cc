@@ -7,6 +7,7 @@ import DraftOrdersTable from './draftOrderTable'
 import DeliveredOrdersTable from './deliveredOrderTable'
 import ContactAndFAQ from './supportTab'
 import PricingSection from '../prices'
+import TeamChatTab from './teamChatTab'
 // Add more components as needed
 
 export default function Dashboard() {
@@ -22,7 +23,7 @@ export default function Dashboard() {
             case 'Delivered':
                 return <DeliveredOrdersTable />
             case 'Team Chat':
-                return <div>Team Chat</div>
+                return <TeamChatTab />
             case 'Prices':
                 return <PricingSection />
             case 'Support':

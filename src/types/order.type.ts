@@ -34,5 +34,5 @@ export interface OrderInterface {
         script_link?: string
     }
     last_updated_stage: string
-    status: 'submitted' | 'pending' | 'draft'
+    status: 'Active' | 'Delivered' | 'Draft'
 }

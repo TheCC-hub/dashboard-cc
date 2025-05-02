@@ -20,6 +20,10 @@ export default function DraftOrdersTable() {
         }
     }
 
+    const handleOrderContinue = (id: string) => {
+        redirect(`/order_form?id=${id}`)
+    }
+
     useEffect(() => {
         fetchAllOrders()
     }, [])
@@ -61,10 +65,12 @@ export default function DraftOrdersTable() {
                             orders.map((order, i) => (
                                 <tr key={i} className="align-top">
                                     <td className="px-6 py-3 text-gray-800">{order.id.slice(0, 3)}...{order.id.slice(-3)}</td>
-                                    <td className="px-6 py-3 text-gray-600">{order.status}</td>
+                                    <td className="px-6 py-3 text-gray-600">{order.videTitle ? order.videTitle : "No Title is Provided"}</td>
                                     <td className="px-6 py-3 text-gray-800">{order.orderType}</td>
                                     <td className="px-6 py-3 text-gray-600">{formatDate(order.createdAt)}</td>
-                                    <td className="px-6 py-3 text-gray-600">Complete</td>
+                                    <td className="px-6 py-1 text-gray-600 flex items-center justify-start">
+                                        <button onClick={() => handleOrderContinue(order.id)} className='bg-red-500 hover:bg-red-500/90 cursor-pointer px-3 py-1.5 rounded text-white'>Continue</button>
+                                    </td>
                                 </tr>
                             ))
                         )}

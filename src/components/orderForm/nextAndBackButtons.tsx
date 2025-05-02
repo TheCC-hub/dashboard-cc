@@ -68,7 +68,7 @@ export default function NextAndBackButtons({ disabled }: { disabled: boolean }) 
                     if (currentStep === 8) {
                         updateIdDataChanges({ ...order, status: "Active" })
                         alert("Order created successfully");
-                        redirect("/");
+                        redirect("/?nav=Active%20Orders");
                     } else {
                         handleNext()
                         updateIdDataChanges(order)

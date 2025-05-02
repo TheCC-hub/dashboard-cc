@@ -71,7 +71,7 @@ const defaultOrder: OrderInterface = {
         script_link: ''
     },
     last_updated_stage: '',
-    status: 'draft'
+    status: 'Draft'
 }
 
 export const useOrderFormStore = create<OrderFormState>((set, get) => ({

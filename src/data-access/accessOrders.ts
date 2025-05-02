@@ -126,13 +126,25 @@ export const getAllOrdersOfUserByStatus = async (clientMail: string, status: str
             createdAt: true,
             status: true,
             orderType: true,
-            nextDraftIn: true
+            videTitle: true,
+            draftVideoLink: true
         },
     });
 
     // if (!order) {
     //     throw new Error("Order not found")
     // }
+
+    return orders;
+}
+
+export const getOrdersById = async (order_id: string) => {
+    const orders = await prisma.order.findMany({
+        where: {
+            id: order_id,
+            status: "Draft",
+        }
+    });
 
     return orders;
 }

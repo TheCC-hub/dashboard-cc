@@ -22,13 +22,10 @@ export default function GetStartForm() {
 
             if (data.status === 200) {
                 setAllOrders(data.data)
-                console.log(data, "this is GET responce")
                 return data.data
             } else {
                 console.log("Error getting orders")
-                console.log(data)
                 setAllOrders([])
-
                 return null
             }
         } catch (error) {
@@ -65,10 +62,12 @@ export default function GetStartForm() {
                 </div>
 
                 {/* abandoned orders  */}
-                <div className='transform duration-300 ease-in-out px-2 border border-gray-400 rounded-xl text-xl font-semibold w-full h-full text-center content-center flex flex-col items-center justify-center gap-4'>
-                    <Image src={iOldOrder} alt='' className='w-20' />
-                    Draft Order
-                    <div className='flex flex-col w-full items-center justify-center gap-2 overflow-hidden overflow-y-scroll'>
+                <div className='transform duration-300 ease-in-out px-2 border border-gray-400 rounded-xl text-xl font-semibold w-full h-full text-center flex flex-col items-center justify-start gap-4 pt-4'>
+                    <div className='flex items-center gap-5'>
+                        <Image src={iOldOrder} alt='' className='w-16' />
+                        Draft Order
+                    </div>
+                    <div className='flex h-full flex-col w-full items-center justify-center gap-2 overflow-hidden overflow-y-scroll'>
 
                         {/* old orders maped */}
                         {allOrders.length > 0 ? allOrders.slice(0, 5).map((order: any, idx: number) => {
@@ -79,8 +78,8 @@ export default function GetStartForm() {
                                     className="flex justify-between items-center border p-4 rounded-xl w-full shadow-sm hover:shadow-md transition"
                                 >
                                     <div className="flex flex-col items-start">
-                                        <span className="text-lg">{order.orderType}</span>
-                                        <span className="text-sm text-gray-500">Abandoned on: {formatDate(order.updatedAt)}</span>
+                                        <span className="text-lg">{order.videTitle ? order.videTitle : "No Title Given Yet"}</span>
+                                        <span className="text-sm text-gray-500">Created On: {formatDate(order.createdAt)}</span>
                                     </div>
                                     <div className="flex gap-2">
                                         <button
@@ -100,7 +99,7 @@ export default function GetStartForm() {
                                                         })),
 
                                                     logistics: {
-                                                        video_title: order.videoTitle ? order.videoTitle : "",
+                                                        video_title: order.videTitle ? order.videTitle : "",
                                                         video_category: order.videoCategory ? order.videoCategory : "",
                                                         video_description: order.videoDescription ? order.videoDescription : "",
                                                         publish_date: order.publishDate ? order.publishDate : "",
@@ -130,7 +129,7 @@ export default function GetStartForm() {
                                         </button>
 
                                         <button
-                                            className="text-sm bg-primary text-white px-3 py-1 rounded hover:bg-gray-400"
+                                            className="text-sm bg-red-500 text-white px-3 py-1 rounded hover:bg-gray-400"
                                             onClick={() => { console.log("delete order") }}
                                         >
                                             Delete
@@ -139,7 +138,7 @@ export default function GetStartForm() {
                                 </div>
                             )
                         }
-                        ) : <p className='text-lg font-semibold'>No Drafts</p>}
+                        ) : <p className='text-lg font-semibold my-auto'>No Drafts</p>}
                     </div>
                 </div>
             </div>

@@ -23,6 +23,7 @@ export default function ActiveOrdersTable() {
     useEffect(() => {
         fetchAllOrders()
     }, [])
+
     return (
         <>
             <div className="w-full bg-white py-5 px-10 border-b border-gray-400 flex items-center justify-between">
@@ -48,7 +49,7 @@ export default function ActiveOrdersTable() {
                             <th className="px-6 py-3 text-left font-semibold text-gray-500">Title</th>
                             <th className="px-6 py-3 text-left font-semibold text-gray-500">Order Type</th>
                             <th className="px-6 py-3 text-left font-semibold text-gray-500">CreatedAt</th>
-                            <th className="px-6 py-3 text-left font-semibold text-gray-500">Next draft in</th>
+                            <th className="px-6 py-3 text-left font-semibold text-gray-500">Last draft</th>
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-100 bg-white">
@@ -62,10 +63,10 @@ export default function ActiveOrdersTable() {
                             orders.map((order, i) => (
                                 <tr key={i} className="align-top">
                                     <td className="px-6 py-3 text-gray-800">{order.id.slice(0, 3)}...{order.id.slice(-3)}</td>
-                                    <td className="px-6 py-3 text-gray-600">{order.status}</td>
+                                    <td className="px-6 py-3 text-gray-600">{order.videTitle}</td>
                                     <td className="px-6 py-3 text-gray-800">{order.orderType}</td>
                                     <td className="px-6 py-3 text-gray-600">{formatDate(order.createdAt)}</td>
-                                    <td className="px-6 py-3 text-gray-600">{order.nextDraftIn}</td>
+                                    <td className="px-6 py-3 text-gray-600">{order.draftVideoLink}</td>
                                 </tr>
                             ))
                         )}
