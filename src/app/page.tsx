@@ -35,16 +35,16 @@ export default function Home() {
   }, [session, status, pathname, searchParams, authMode]);
 
   return (
-    <div className="w-full h-screen bg-red-100 flex">
+    <div className="w-full h-screen bg-[var(--color-background)] flex text-white">
       {notAuthenticated &&
         <div className='absolute top-0 left-0 w-full h-full bg-black/50 z-10 flex items-center justify-center'>
           <AuthPage authMode={authMode} />
         </div>
       }
 
-      <div className='h-full max-w-[250px] px-4 py-6 bg-gray-100 border-r border-gray-400 text-[var(--color-brand-red)] flex flex-col items-center justify-between'>
+      <div className='h-full max-w-[250px] bg-[var(--color-background-2)] px-4 py-6  border-r border-gray-400  flex flex-col items-center justify-between'>
         <div className='w-full flex-col flex items-center justify-center'>
-          <div className=' h-12'>
+          <div className=' h-12 text-[var(--color-brand-red)]'>
             <Link href={"/"} className='text-3xl hover:text-4xl transform duration-300 ease-in-out hover:font-bold'>ClipCurve</Link>
           </div>
 

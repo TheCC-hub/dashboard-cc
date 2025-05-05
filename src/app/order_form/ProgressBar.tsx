@@ -27,10 +27,10 @@ export default function ProgressBar({ currentStep }: { currentStep: number }) {
                                     <div
                                         className={`whitespace-nowrap 
                                         ${index === currentStep ?
-                                                "text-[var(--color-brand-red)] font-bold"
+                                                "text-red-300 font-bold"
                                                 : index < currentStep
                                                     ? "text-[var(--color-brand-red)] font-bold"
-                                                    : "text-black"
+                                                    : "text-gray-200"
                                             } `}
                                     >
                                         {step.title}

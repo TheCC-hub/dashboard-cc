@@ -4,8 +4,8 @@ import React from 'react'
 export default function PackageCard({ item, bgRed }: any) {
 
     return (
-        <div className='w-auto text-center relative rounded-3xl overflow-hidden border-2 border-[var(--color-brand-red)] backdrop-blur-sm'>
-            <div className={`w-full  py-5 border-b-[0.1px] border-[var(--color-brand-red)]  ${bgRed ? "bg-[var(--color-brand-red)] text-white" : "bg-gray-700 text-white"}`}>
+        <div className='w-auto text-center relative rounded-3xl overflow-hidden border-2 border-gray-400 backdrop-blur-sm'>
+            <div className={`w-full  py-5 border-b-[0.1px] border-[var(--color-brand-red)]  ${bgRed ? "bg-red-400 text-white" : "bg-gray-700 text-white"}`}>
                 <h1 className='text-3xl font-semibold '>{item.name}</h1>
                 <p>{item.description}</p>
             </div>

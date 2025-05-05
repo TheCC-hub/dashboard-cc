@@ -1,5 +1,23 @@
 @import "tailwindcss";
 
-@theme{
-  --color-brand-red: #E43D12
+@theme {
+  --color-brand-red: #E43D12;
+  --color-background-2: #1E293B;
+}
+
+@theme {
+  --color-background-dark: #050613;
+}
+
+/* global.css or your stylesheet */
+.glow-text-red:hover {
+  text-shadow: 0 0 10px #F87171;
+}
+
+.glow-border:hover {
+  border: 2px solid #F87171;
+  /* red-400 */
+  box-shadow: 0 0 10px #F87171;
+  border-radius: 0.5rem;
+  /* optional for rounded glow */
 }

@@ -37,7 +37,7 @@ export default function Sidebar() {
                     <div
                         key={name}
                         className={
-                            `flex items-center space-x-3 p-3 rounded-md cursor-pointer text-black transition-all 
+                            `flex items-center space-x-3 p-3 rounded-md cursor-pointer text-gray-200 transition-all 
                             ${current === name && 'bg-red-100 text-red-600 font-semibold'}`
                         }
                         onClick={() => handleClick(name)}

@@ -104,7 +104,7 @@ export default function OrderForm() {
     }, [])
     return (
         <Suspense>
-            <div className='py-8 flex items-center justify-center px-10 w-full min-h-screen h-screen text-black relative bg-blue-500/30'>
+            <div className='py-8 flex items-center justify-center px-10 w-full min-h-screen h-screen relative'>
 
                 {notAuthenticated &&
                     <div className='absolute top-0 left-0 w-full h-full bg-black/50 z-10 flex items-center justify-center dark:text-white'>
@@ -112,12 +112,12 @@ export default function OrderForm() {
                     </div>
                 }
 
-                <div className='flex items-center bg-white rounded-2xl w-full h-full overflow-hidden border border-red-500'>
+                <div className='flex items-center rounded-2xl w-full h-full overflow-hidden border border-red-400'>
                     {/* form index */}
-                    <div className='h-full max-w-[250px] px-4 py-6 bg-gray-100 border-r border-gray-400 text-[var(--color-brand-red)] flex flex-col items-center justify-between'>
+                    <div className='h-full max-w-[250px] px-4 py-6 bg-[var(--color-background-2)] border-r border-gray-400  flex flex-col items-center justify-between'>
                         <div className='w-full flex-col flex items-center justify-center'>
                             <div className=' h-12'>
-                                <Link href={"/"} className='text-3xl hover:text-4xl transform duration-300 ease-in-out hover:font-bold'>ClipCurve</Link>
+                                <Link href={"/"} className='text-3xl hover:text-4xl transform text-gray-200 hover:text-[var(--color-brand-red)] duration-300 ease-in-out hover:font-bold'>ClipCurve</Link>
                             </div>
 
                             {/* progress bar  */}
@@ -142,7 +142,7 @@ export default function OrderForm() {
                         </div>
                     </div>
 
-                    <div className='w-full h-full relative px-10 py-6'>
+                    <div className='w-full h-full relative px-10 py-6 bg-[var(--color-background-2)]'>
                         <div className='h-full w-full pb-20'>
 
                             {currentStep === 0 && <GetStartForm />}

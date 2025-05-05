@@ -34,7 +34,7 @@ export default function Dashboard() {
     }
 
     return (
-        <div className="">
+        <div className="bg-[var(--color-background-dark)]">
             {renderComponent()}
         </div>
     )

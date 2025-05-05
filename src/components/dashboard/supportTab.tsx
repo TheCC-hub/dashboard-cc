@@ -19,22 +19,22 @@ export default function ContactAndFAQ() {
     };
 
     return (
-        <div className="max-h-screen h-screen p-6 text-center bg-white overflow-scroll">
+        <div className="max-h-screen h-screen p-6 text-center  overflow-scroll">
             <div className='max-w-3xl mx-auto mt-12'>
                 {/* Contact Section */}
                 <h2 className="text-3xl font-semibold mb-4">Contact Us</h2>
-                <p className="text-gray-500 mb-10">You can reach us through these communication methods below</p>
+                <p className="text-gray-300 mb-10">You can reach us through these communication methods below</p>
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-16">
-                    <div className="border rounded-lg p-6 py-10 flex flex-col items-center justify-center hover:text-red-500 cursor-not-allowed">
-                        <MessageSquare className="text-red-400 mb-2" size={32} />
+                    <div className="bg-[var(--color-background-2)] border border-gray-300 rounded-lg p-6 py-16 flex flex-col gap-4 items-center justify-center hover:text-red-500 cursor-not-allowed">
+                        <MessageSquare className="text-red-400 mb-2" size={42} />
                         <span className="font-medium">Chat with Video Manager</span>
                     </div>
-                    <Link href="mailto:theclipcurve@gmail.com" target='_blanck' className="border rounded-lg p-6 py-10 flex flex-col items-center justify-center hover:text-red-500 cursor-pointer">
+                    <Link href="mailto:theclipcurve@gmail.com" target='_blanck' className="bg-[var(--color-background-2)] border border-gray-300 rounded-lg p-6 py-10 flex gap-4 flex-col items-center justify-center hover:text-red-500 cursor-pointer">
                         <Mail className="text-red-400 mb-2" size={32} />
                         <span className="font-medium">Support Email</span>
                     </Link>
-                    <Link href={"https://calendly.com/clip-curve"} target='_blank' className="border rounded-lg p-6 py-10 flex flex-col items-center justify-center hover:text-red-500 cursor-pointer">
+                    <Link href={"https://calendly.com/clip-curve"} target='_blank' className="bg-[var(--color-background-2)] border border-gray-300 rounded-lg p-6 py-10 flex gap-4 flex-col items-center justify-center hover:text-red-500 cursor-pointer">
                         <PhoneCall className="text-red-400 mb-2" size={32} />
                         <span className="font-medium">Schedule Call</span>
                     </Link>
@@ -42,7 +42,7 @@ export default function ContactAndFAQ() {
 
                 {/* FAQ Section */}
                 <h2 className="text-3xl font-semibold mb-4">Frequently Asked Questions</h2>
-                <p className="text-gray-500 mb-6">These are the most commonly asked questions amongst our creators.</p>
+                <p className="text-gray-300 mb-6">These are the most commonly asked questions amongst our creators.</p>
 
                 {/* <div className="mb-6">
                     <input
@@ -59,13 +59,13 @@ export default function ContactAndFAQ() {
                                 onClick={() => toggleIndex(index)}
                                 className="flex text-xl justify-center items-center w-full font-medium relative"
                             >
-                                <span>{faq.question}</span>
+                                <span className='text-red-300'>{faq.question}</span>
                                 <span className='absolute right-0'>
                                     {openIndex === index ? <Minus size={18} /> : <Plus size={18} />}
                                 </span>
                             </button>
                             {openIndex === index && (
-                                <p className="mt-4 text-lg text-gray-800">{faq.answer}</p>
+                                <p className="mt-4 text-lg ">{faq.answer}</p>
                             )}
                         </div>
                     ))}

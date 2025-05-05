@@ -26,9 +26,9 @@ export default function ActiveOrdersTable() {
 
     return (
         <>
-            <div className="w-full bg-white py-5 px-10 border-b border-gray-400 flex items-center justify-between">
+            <div className="w-full bg-[#1E293B] py-5 px-10 border-b border-gray-400 flex items-center justify-between">
                 <div>
-                    <h1 className="text-3xl text-black">All Orders</h1>
+                    <h1 className="text-3xl">All Orders</h1>
                     <p>total orders {orders.length}</p>
                 </div>
 
@@ -41,32 +41,32 @@ export default function ActiveOrdersTable() {
             </div>
 
 
-            <div className="bg-white rounded-xl border mx-5 my-8 border-gray-400 overflow-auto h-[calc(100vh-160px)]">
+            <div className="bg-[#1E293B] rounded-xl border mx-5 my-8 border-gray-400 overflow-auto h-[calc(100vh-160px)]">
                 <table className="min-w-full divide-y divide-gray-200">
-                    <thead className="bg-white">
+                    <thead className="">
                         <tr>
-                            <th className="px-6 py-3 text-left font-semibold text-gray-500">Order Id</th>
-                            <th className="px-6 py-3 text-left font-semibold text-gray-500">Title</th>
-                            <th className="px-6 py-3 text-left font-semibold text-gray-500">Order Type</th>
-                            <th className="px-6 py-3 text-left font-semibold text-gray-500">CreatedAt</th>
-                            <th className="px-6 py-3 text-left font-semibold text-gray-500">Last draft</th>
+                            <th className="px-6 py-3 text-left font-semibold text-red-300">Order Id</th>
+                            <th className="px-6 py-3 text-left font-semibold text-red-300">Title</th>
+                            <th className="px-6 py-3 text-left font-semibold text-red-300">Order Type</th>
+                            <th className="px-6 py-3 text-left font-semibold text-red-300">CreatedAt</th>
+                            <th className="px-6 py-3 text-left font-semibold text-red-300">Last draft</th>
                         </tr>
                     </thead>
-                    <tbody className="divide-y divide-gray-100 bg-white">
+                    <tbody className="divide-y divide-gray-100">
                         {orders.length === 0 ? (
                             <tr className="align-top">
-                                <td colSpan={5} className="px-6 py-6 text-center text-sm text-gray-400">
+                                <td colSpan={5} className="px-6 py-6 text-center text-xl text-gray-200">
                                     No orders available.
                                 </td>
                             </tr>
                         ) : (
                             orders.map((order, i) => (
                                 <tr key={i} className="align-top">
-                                    <td className="px-6 py-3 text-gray-800">{order.id.slice(0, 3)}...{order.id.slice(-3)}</td>
-                                    <td className="px-6 py-3 text-gray-600">{order.videTitle}</td>
-                                    <td className="px-6 py-3 text-gray-800">{order.orderType}</td>
-                                    <td className="px-6 py-3 text-gray-600">{formatDate(order.createdAt)}</td>
-                                    <td className="px-6 py-3 text-gray-600">{order.draftVideoLink}</td>
+                                    <td className="px-6 py-3 text-gray-50">{order.id.slice(0, 3)}...{order.id.slice(-3)}</td>
+                                    <td className="px-6 py-3 text-gray-50">{order.videTitle}</td>
+                                    <td className="px-6 py-3 text-gray-50">{order.orderType}</td>
+                                    <td className="px-6 py-3 text-gray-50">{formatDate(order.createdAt)}</td>
+                                    <td className="px-6 py-3 text-gray-50">{order.draftVideoLink}</td>
                                 </tr>
                             ))
                         )}

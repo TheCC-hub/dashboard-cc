@@ -29,9 +29,9 @@ export default function DraftOrdersTable() {
     }, [])
     return (
         <>
-            <div className="w-full bg-white py-5 px-10 border-b border-gray-400 flex items-center justify-between">
+            <div className="w-full bg-[var(--color-background-2)] py-5 px-10 border-b border-gray-400 flex items-center justify-between">
                 <div>
-                    <h1 className="text-3xl text-black">Draft Orders</h1>
+                    <h1 className="text-3xl">Draft Orders</h1>
                     <p>total orders {orders.length}</p>
                 </div>
 
@@ -43,32 +43,32 @@ export default function DraftOrdersTable() {
                 </button>
             </div>
 
-            <div className="bg-white rounded-xl border mx-5 my-8 border-gray-400 overflow-auto h-[calc(100vh-160px)]">
+            <div className="bg-[var(--color-background-2)] rounded-xl border mx-5 my-8 border-gray-400 overflow-auto h-[calc(100vh-160px)]">
                 <table className="min-w-full divide-y divide-gray-200">
-                    <thead className="bg-white">
+                    <thead className="">
                         <tr>
-                            <th className="px-6 py-3 text-left font-semibold text-gray-500">Order Id</th>
-                            <th className="px-6 py-3 text-left font-semibold text-gray-500">Title</th>
-                            <th className="px-6 py-3 text-left font-semibold text-gray-500">Order Type</th>
-                            <th className="px-6 py-3 text-left font-semibold text-gray-500">CreatedAt</th>
-                            <th className="px-6 py-3 text-left font-semibold text-gray-500">Action</th>
+                            <th className="px-6 py-3 text-left font-semibold text-red-200">Order Id</th>
+                            <th className="px-6 py-3 text-left font-semibold text-red-200">Title</th>
+                            <th className="px-6 py-3 text-left font-semibold text-red-200">Order Type</th>
+                            <th className="px-6 py-3 text-left font-semibold text-red-200">CreatedAt</th>
+                            <th className="px-6 py-3 text-left font-semibold text-red-200">Action</th>
                         </tr>
                     </thead>
-                    <tbody className="divide-y divide-gray-100 bg-white">
+                    <tbody className="divide-y divide-gray-100 ">
                         {orders.length === 0 ? (
                             <tr className="align-top">
-                                <td colSpan={5} className="px-6 py-6 text-center text-sm text-gray-400">
+                                <td colSpan={5} className="px-6 py-6 text-center text-xl text-gray-200">
                                     No orders available.
                                 </td>
                             </tr>
                         ) : (
                             orders.map((order, i) => (
                                 <tr key={i} className="align-top">
-                                    <td className="px-6 py-3 text-gray-800">{order.id.slice(0, 3)}...{order.id.slice(-3)}</td>
-                                    <td className="px-6 py-3 text-gray-600">{order.videTitle ? order.videTitle : "No Title is Provided"}</td>
-                                    <td className="px-6 py-3 text-gray-800">{order.orderType}</td>
-                                    <td className="px-6 py-3 text-gray-600">{formatDate(order.createdAt)}</td>
-                                    <td className="px-6 py-1 text-gray-600 flex items-center justify-start">
+                                    <td className="px-6 py-3 text-gray-50">{order.id.slice(0, 3)}...{order.id.slice(-3)}</td>
+                                    <td className="px-6 py-3 text-gray-50">{order.videTitle ? order.videTitle : "No Title is Provided"}</td>
+                                    <td className="px-6 py-3 text-gray-50">{order.orderType}</td>
+                                    <td className="px-6 py-3 text-gray-50">{formatDate(order.createdAt)}</td>
+                                    <td className="px-6 py-1 text-gray-50 flex items-center justify-start">
                                         <button onClick={() => handleOrderContinue(order.id)} className='bg-red-500 hover:bg-red-500/90 cursor-pointer px-3 py-1.5 rounded text-white'>Continue</button>
                                     </td>
                                 </tr>

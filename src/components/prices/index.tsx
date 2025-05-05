@@ -16,9 +16,9 @@ export default function PricingSection() {
     }, [activeTab]);
 
     return (
-        <div className="w-full bg-white h-screen" id="pricing">
-            <div className="w-full bg-white pt-5 px-10 border-b border-gray-300">
-                <h1 className="text-3xl text-black">Pricing</h1>
+        <div className="w-full bg-[var(--color-background-dark)] h-screen" id="pricing">
+            <div className="w-full pt-5 px-10 border-b border-gray-500">
+                <h1 className="text-3xl ">Pricing</h1>
                 <div
                     className="flex items-center justify-start gap-5 mt-5"
                 >

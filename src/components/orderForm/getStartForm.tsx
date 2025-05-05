@@ -55,16 +55,16 @@ export default function GetStartForm() {
                         setCurrentStep(1)
                         return
                     }}
-                    className='cursor-pointer hover:bg-red-50 hover:shadow-lg transform duration-300 ease-in-out hover:border-primary border border-gray-400 rounded-xl text-xl font-semibold w-full h-full text-center content-center flex flex-col items-center justify-center gap-4'
+                    className='cursor-pointer group glow-text-red hover:bg-[var(--color-background-2)] text-gray-100 hover:border-red-400 hover:shadow-[0_0_10px_#F87171] transform duration-300 ease-in-out hover:border-primary border border-gray-400 rounded-xl text-xl font-semibold w-full h-full text-center content-center flex flex-col items-center justify-center gap-4'
                 >
-                    <Image src={iNewOrder} alt='' className='w-20' />
+                    <Image src={iNewOrder} alt='' className='w-20 transform ease-out duration-300 group-hover:w-32' />
                     New Order
                 </div>
 
                 {/* abandoned orders  */}
-                <div className='transform duration-300 ease-in-out px-2 border border-gray-400 rounded-xl text-xl font-semibold w-full h-full text-center flex flex-col items-center justify-start gap-4 pt-4'>
-                    <div className='flex items-center gap-5'>
-                        <Image src={iOldOrder} alt='' className='w-16' />
+                <div className='transform duration-300 ease-in-out px-2 border group hover:border-red-400 border-gray-400 hover:shadow-[0_0_10px_#F87171] rounded-xl text-xl font-semibold w-full h-full text-center flex flex-col items-center justify-start gap-4 pt-4'>
+                    <div className='flex items-center gap-5 text-gray-200'>
+                        <Image src={iOldOrder} alt='' className='w-16 ' />
                         Draft Order
                     </div>
                     <div className='flex h-full flex-col w-full items-center justify-center gap-2 overflow-hidden overflow-y-scroll'>
@@ -75,15 +75,15 @@ export default function GetStartForm() {
                             return (
                                 <div
                                     key={idx}
-                                    className="flex justify-between items-center border p-4 rounded-xl w-full shadow-sm hover:shadow-md transition"
+                                    className="flex justify-between items-center border-gray-400 hover:border-gray-200 border p-4 rounded-xl w-full shadow-sm hover:shadow-md transition"
                                 >
                                     <div className="flex flex-col items-start">
                                         <span className="text-lg">{order.videTitle ? order.videTitle : "No Title Given Yet"}</span>
-                                        <span className="text-sm text-gray-500">Created On: {formatDate(order.createdAt)}</span>
+                                        <span className="text-sm text-gray-300">Created On: {formatDate(order.createdAt)}</span>
                                     </div>
                                     <div className="flex gap-2">
                                         <button
-                                            className="text-sm bg-green-500 text-white px-3 py-1 rounded hover:bg-blue-600"
+                                            className="text-sm bg-green-400 text-white px-3 py-1 rounded hover:bg-green-600 cursor-pointer"
                                             onClick={() => {
                                                 updatePartial({
                                                     order_id: order.id,
@@ -129,7 +129,7 @@ export default function GetStartForm() {
                                         </button>
 
                                         <button
-                                            className="text-sm bg-red-500 text-white px-3 py-1 rounded hover:bg-gray-400"
+                                            className="text-sm bg-red-400 text-white px-3 py-1 rounded hover:bg-red-500 cursor-pointer"
                                             onClick={() => { console.log("delete order") }}
                                         >
                                             Delete
