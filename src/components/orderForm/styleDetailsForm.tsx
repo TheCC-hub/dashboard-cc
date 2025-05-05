@@ -64,19 +64,20 @@ export default function StyleDetailsForm() {
                             </div>
 
                             <div className='w-full h-full relative'>
-                                <p className='font-semibold text-gray-500'>What should be the tone be?</p>
+                                <p className='font-semibold text-gray-500'>What should the tone be?</p>
                                 <div className='flex items-center justify-between gap-2 overflow-hidden overflow-x-scroll w-full'>
-                                    {Object.keys(order.video_tone).map((item: any, idx: number) => {
-
+                                    {Object.keys(order.video_tone).map((item, idx: number) => {
+                                        const toneKey = item as keyof typeof order.video_tone;
                                         return (
                                             <div
-                                                onClick={() => updateField("video_tone", { ...order.video_tone, [item]: !order.video_tone[item] })}
+                                                onClick={() => updateField("video_tone", { ...order.video_tone, [toneKey]: !order.video_tone[toneKey] })}
                                                 key={idx}
                                                 className={`min-w-[30%] rounded-2xl border h-[250px] flex flex-col gap-4 items-center justify-center cursor-pointer hover:shadow-md ${Object.values(order.video_tone)[idx] ? "bg-red-500/50 border-red-600" : ""}`}
                                             >
                                                 <Image src={ToneIcons[idx]} alt='' className='w-12' />
-                                                <p className='capitalize text-lg font-semibold'>{item}</p>
-                                            </div>)
+                                                <p className='capitalize text-lg font-semibold'>{toneKey}</p>
+                                            </div>
+                                        )
                                     })}
                                 </div>
                             </div>
