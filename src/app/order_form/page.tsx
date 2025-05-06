@@ -103,7 +103,7 @@ export default function OrderForm() {
         handleDraftLoading()
     }, [])
     return (
-        <Suspense>
+        <Suspense fallback={<div className="flex items-center justify-center min-h-screen">Loading...</div>}>
             <div className='py-8 flex items-center justify-center px-10 w-full min-h-screen h-screen relative'>
 
                 {notAuthenticated &&
