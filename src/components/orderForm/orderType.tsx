@@ -66,19 +66,19 @@ export default function OrderType() {
                         <div
                             onClick={() => handleOrderType(item)}
                             key={idx}
-                            className={`cursor-pointer glow-border w-[31%] h-[50%] p-2 border rounded-2xl text-center content-center relative flex flex-col items-center  justify-center gap-2 hover:shadow-md ${order.order_type === item.title ? "border-red-400 shadow-md bg-red-900/20" : ""}`}
+                            className={`cursor-pointer glow-border w-[31%] h-[50%] p-2 border rounded-2xl text-center content-center relative flex flex-col items-center  justify-center gap-2 hover:shadow-md ${order.order_type === item.title ? "border-red-400 shadow-md bg-[var(--color-brand-red)]" : ""}`}
                         >
                             {/* <div className={`w-4 h-4 rounded-full border absolute top-4 right-4 ${formData.order_type === order.title ? "bg-primary" : "bg-gray-200"} `} /> */}
                             <Image src={item.icon} alt='' className='w-14 ' />
                             <h1 className='text-xl'>{item.title}</h1>
                             <p className='text-sm'>{item.description}</p>
                             {order.order_type == "Vertical Video" && item.title === "Vertical Video" &&
-                                <div className=' flex items-center justify-center text-black gap-2 font-bold' >
+                                <div className=' flex items-center justify-center text-gray-300 gap-2 font-bold' >
                                     {order.order_quantity && <p> Quantity: {order.order_quantity}</p>}
                                 </div>
                             }
                             {order.order_type == "Thumbnail" && item.title === "Thumbnail" &&
-                                <div className=' flex items-center justify-center text-black gap-2 font-bold' >
+                                <div className=' flex items-center justify-center text-gray-300 gap-2 font-bold' >
                                     {order.order_quantity && <p> Quantity: {order.order_quantity}</p>}
                                 </div>
                             }

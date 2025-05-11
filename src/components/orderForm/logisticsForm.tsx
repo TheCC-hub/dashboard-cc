@@ -26,7 +26,7 @@ const LogisticsForm = () => {
             <div className="space-y-4 ">
                 {/* Video Title */}
                 <div>
-                    <label className="block text-gray-700">Video Title *</label>
+                    <label className="block text-gray-100">Video Title *</label>
                     <input
                         type="text"
                         name="video_title"
@@ -40,7 +40,7 @@ const LogisticsForm = () => {
 
                 {/* Video Category */}
                 <div>
-                    <label className="block text-gray-700">Video Category</label>
+                    <label className="block text-gray-100">Video Category</label>
                     <input
                         type="text"
                         name="video_category"
@@ -53,7 +53,7 @@ const LogisticsForm = () => {
 
                 {/* Video Description */}
                 <div>
-                    <label className="block text-gray-700">Video Description</label>
+                    <label className="block text-gray-100">Video Description</label>
                     <textarea
                         name="video_description"
                         value={order.logistics.video_description}
@@ -65,19 +65,19 @@ const LogisticsForm = () => {
 
                 {/* Publish Date */}
                 <div>
-                    <label className="block text-gray-700">Publish Date</label>
+                    <label className="block text-gray-100">Publish Date</label>
                     <input
                         type="date"
                         name="publish_date"
                         value={order.logistics.publish_date}
                         onChange={handleChange}
-                        className="w-full border p-2 rounded mt-1 bg-transparent outline-none"
+                        className="w-full border p-2 rounded mt-1 bg-transparent outline-none text-white"
                     />
                 </div>
 
                 {/* Final Length */}
                 <div>
-                    <label className="block text-gray-700">Final Length *</label>
+                    <label className="block text-gray-100">Final Length *</label>
                     <input
                         type="text"
                         name="final_length"
@@ -88,7 +88,6 @@ const LogisticsForm = () => {
                         required
                     />
                 </div>
-
 
             </div>
 

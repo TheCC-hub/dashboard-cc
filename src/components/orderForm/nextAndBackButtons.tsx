@@ -6,7 +6,7 @@ import { useOrderFormStore } from '@/store/orderFormStore';
 import { redirect } from "next/navigation";
 
 export default function NextAndBackButtons({ disabled }: { disabled: boolean }) {
-    const { formStages, currentStep, setCurrentStep, order, updateField } = useOrderFormStore()
+    const { formStages, currentStep, setCurrentStep, order, updateField, resetOrder } = useOrderFormStore()
 
     const lastSavedRef = useRef(order)
 
@@ -68,7 +68,9 @@ export default function NextAndBackButtons({ disabled }: { disabled: boolean }) 
                     if (currentStep === 8) {
                         updateIdDataChanges({ ...order, status: "Active" })
                         alert("Order created successfully");
-                        redirect("/?nav=Active%20Orders");
+                        setCurrentStep(0)
+                        resetOrder()
+                        redirect("/?nav=Active Orders");
                     } else {
                         handleNext()
                         updateIdDataChanges(order)
