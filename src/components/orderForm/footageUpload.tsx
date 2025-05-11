@@ -15,7 +15,7 @@ export default function FootageUploadForm() {
                 <p>Please select one of the following options to start your order!</p>
             </div>
 
-            <div className='w-full h-full flex items-center justify-between gap-4 py-4'>
+            <div className='w-full h-full flex items-center justify-between gap-4 py-4 pb-10'>
                 <div className='border border-gray-400 opacity-80 bg-black/10 cursor-not-allowed rounded-xl w-full h-full flex flex-col items-center justify-center ga-2 text-center content-center'>
                     <FiUploadCloud className='text-4xl text-primary' />
                     <p className=''>Upload raw footage</p>

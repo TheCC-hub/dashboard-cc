@@ -92,11 +92,11 @@ export default function GetStartForm() {
                                                         raw_footage_size: order.rawFootageSize ? order.rawFootageSize : "",
                                                         raw_footage_length: order.rawFootageLength ? order.rawFootageLength : "",
                                                     },
-                                                    add_ons:
+                                                    add_ons: order?.addOns ?
                                                         Object.keys(order.addOns).map((key: any) => ({
                                                             title: key,
                                                             number: order.addOns[key] || 0,
-                                                        })),
+                                                        })) : [],
 
                                                     logistics: {
                                                         video_title: order.videTitle ? order.videTitle : "",

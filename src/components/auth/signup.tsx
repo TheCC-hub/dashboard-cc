@@ -73,11 +73,11 @@ export default function SignUpForm() {
     };
     return (
         <Suspense>
-            <div className="max-w-md mx-auto bg-white rounded-2xl shadow-xl p-8 relative">
+            <div className="max-w-md mx-auto bg-[var(--color-background-2)] rounded-2xl shadow-xl p-8 relative">
                 {/* cose button  */}
                 <button
                     onClick={closeModal}
-                    className="absolute top-4 right-4 text-gray-500 hover:text-gray-800"
+                    className="absolute top-4 right-4 text-gray-500 hover:text-gray-200 cursor-pointer"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -105,7 +105,7 @@ export default function SignUpForm() {
                     Already have an account?{" "}
                     <p
                         onClick={redirectToLogin}
-                        className="text-red-500 font-semibold"
+                        className="text-red-500 font-semibold cursor-pointer"
                     >
                         Sign in here
                     </p>
@@ -113,7 +113,7 @@ export default function SignUpForm() {
 
                 <button
                     onClick={signInWithGoogle}
-                    className="w-full flex items-center justify-center gap-2 border py-2 rounded-md text-sm mb-4 hover:border-primary hover:text-primary transition duration-300 ease-in-out"
+                    className="w-full cursor-pointer flex items-center justify-center gap-2 border py-2 rounded-md text-sm mb-4 hover:border-[var(--color-brand-red)] hover:text-[var(--color-brand-red)] transition duration-300 ease-in-out"
                 >
                     <FaGoogle />
                     Signup with Google
@@ -121,7 +121,7 @@ export default function SignUpForm() {
 
                 <div className="flex items-center justify-center mb-4">
                     <span className="border-t w-full"></span>
-                    <span className="px-2 text-gray-500 text-sm">or</span>
+                    <span className="px-2 text-gray-300 text-sm">or</span>
                     <span className="border-t w-full"></span>
                 </div>
 
@@ -136,7 +136,7 @@ export default function SignUpForm() {
                             placeholder="johndoe@gmail.com"
                             value={form.email}
                             onChange={handleChange}
-                            className="w-full pl-10 border rounded-md p-2"
+                            className="w-full pl-10 border rounded-md p-2 outline-none focus:border-red-400 focus:ring-1 focus:ring-red-400"
                         />
                     </div>
                 </div>
@@ -152,7 +152,7 @@ export default function SignUpForm() {
                             placeholder="John Doe"
                             value={form.fullName}
                             onChange={handleChange}
-                            className="w-full pl-10 border rounded-md p-2"
+                            className="w-full pl-10 border rounded-md p-2 outline-none focus:border-red-400 focus:ring-1 focus:ring-red-400"
                         />
                     </div>
                 </div>
@@ -168,7 +168,7 @@ export default function SignUpForm() {
                             placeholder="Password"
                             value={form.password}
                             onChange={handleChange}
-                            className="w-full pl-10 border rounded-md p-2"
+                            className="w-full pl-10 border rounded-md p-2 outline-none focus:border-red-400 focus:ring-1 focus:ring-red-400"
                         />
                     </div>
                 </div>
@@ -184,7 +184,7 @@ export default function SignUpForm() {
                             placeholder="Confirm password"
                             value={form.confirmPassword}
                             onChange={handleChange}
-                            className="w-full pl-10 border rounded-md p-2"
+                            className="w-full pl-10 border rounded-md p-2 outline-none focus:border-red-400 focus:ring-1 focus:ring-red-400"
                         />
                     </div>
                 </div>
@@ -209,7 +209,7 @@ export default function SignUpForm() {
                 </div>
 
                 <button
-                    className="w-full bg-red-400 hover:bg-red-500 text-white py-2 rounded-md font-medium"
+                    className="w-full bg-red-400 hover:bg-red-500 text-white py-2 rounded-md font-medium transition duration-300 ease-in-out cursor-pointer"
                     disabled={!form.acceptedTerms}
                     onClick={handleSubmit}
                 >

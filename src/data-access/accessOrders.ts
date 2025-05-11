@@ -139,10 +139,9 @@ export const getAllOrdersOfUserByStatus = async (clientMail: string, status: str
 }
 
 export const getOrdersById = async (order_id: string) => {
-    const orders = await prisma.order.findMany({
+    const orders = await prisma.order.findUnique({
         where: {
             id: order_id,
-            status: "Draft",
         }
     });
 

@@ -20,7 +20,7 @@ export default function ContactAndFAQ() {
 
     return (
         <div className="max-h-screen h-screen p-6 text-center  overflow-scroll">
-            <div className='max-w-3xl mx-auto mt-12'>
+            <div className='px-10 mx-auto mt-12'>
                 {/* Contact Section */}
                 <h2 className="text-3xl font-semibold mb-4">Contact Us</h2>
                 <p className="text-gray-300 mb-10">You can reach us through these communication methods below</p>
@@ -59,7 +59,7 @@ export default function ContactAndFAQ() {
                                 onClick={() => toggleIndex(index)}
                                 className="flex text-xl justify-center items-center w-full font-medium relative"
                             >
-                                <span className='text-red-300'>{faq.question}</span>
+                                <span className={` ${openIndex == index ? "text-red-400" : "text-gray-300"}`}>{faq.question}</span>
                                 <span className='absolute right-0'>
                                     {openIndex === index ? <Minus size={18} /> : <Plus size={18} />}
                                 </span>

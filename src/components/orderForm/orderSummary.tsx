@@ -11,7 +11,7 @@ const OrderSummary = () => {
                 {/* Header */}
                 <div className="flex items-center justify-between mb-4">
                     <h2 className="text-2xl font-bold">🎬 Order Summary</h2>
-                    <span className="text-sm text-gray-600">Form Stage: {order.last_updated_stage ?? "N/A"}</span>
+                    <span className="text-sm text-gray-300">Form Stage: {order.last_updated_stage ?? "N/A"}</span>
                 </div>
 
                 {/* Core Info */}
@@ -35,7 +35,7 @@ const OrderSummary = () => {
                     <ul className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                         {
                             order.add_ons ? order.add_ons.map((addon: any, i: number) => (
-                                <li key={i} className="bg-white p-3 rounded-md shadow border">
+                                <li key={i} className="bg-gray-900 p-3 rounded-md shadow border border-gray-400">
                                     <span className="font-medium">{addon.title}</span>
                                     <div className="text-sm text-gray-500">x {addon.number}</div>
                                 </li>
@@ -59,7 +59,7 @@ const OrderSummary = () => {
                 <Section title="🎭 Video Tone">
                     <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
                         {Object.entries(order.video_tone).map(([key, value]) => (
-                            <li key={key} className={`flex items-center gap-2 p-2 rounded-md ${value ? "bg-green-100 text-green-700" : "bg-gray-100 text-gray-400"}`}>
+                            <li key={key} className={`flex items-center gap-2 p-2 rounded-md ${value ? "bg-red-100 text-red-700" : "bg-gray-700 text-gray-300"}`}>
                                 {value ? <CheckCircle size={16} /> : <XCircle size={16} />}
                                 {key.charAt(0).toUpperCase() + key.slice(1)}
                             </li>
@@ -87,8 +87,8 @@ const OrderSummary = () => {
 
 // Reusable components
 const InfoCard = ({ label, value }: { label: string; value: React.ReactNode }) => (
-    <div className="bg-white p-4 shadow rounded-md border">
-        <div className="text-xs text-gray-500">{label}</div>
+    <div className=" p-4 shadow rounded-md border border-gray-500">
+        <div className="text-xs text-gray-200">{label}</div>
         <div className="font-semibold">{value}</div>
     </div>
 );
@@ -104,8 +104,8 @@ const TwoColList = ({ items }: { items: { label: string; value: string }[] }) =>
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
         {items.map((item, i) => (
             <div key={i} className="text-sm">
-                <div className="text-gray-600 font-medium">{item.label}</div>
-                <div className="text-gray-800">{item.value || "—"}</div>
+                <div className="text-gray-200 font-medium">{item.label}</div>
+                <div className="text-gray-300">{item.value || "—"}</div>
             </div>
         ))}
     </div>
@@ -116,7 +116,7 @@ const DetailRow = ({ icon, label, value }: { icon: React.ReactNode; label: strin
         <div className="mt-1">{icon}</div>
         <div>
             <div className="font-medium">{label}</div>
-            <div className="text-gray-700">{value}</div>
+            <div className="text-gray-200">{value}</div>
         </div>
     </div>
 );

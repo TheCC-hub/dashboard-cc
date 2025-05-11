@@ -8,7 +8,7 @@ export default function OrderoCountPopup({ onClose }: { onClose: () => void }) {
     const [count, setCount] = useState<number>(order.order_quantity || 0);
 
     return (
-        <div className=" mx-auto bg-white rounded-xl p-6 px-16 flex flex-col items-center justify-center gap-y-4">
+        <div className=" mx-auto bg-gray-800 rounded-xl p-6 px-16 flex flex-col items-center justify-center gap-y-4">
             <div>
                 <h2 className="text-2xl font-semibold text-center">Select Order Quantity</h2>
                 <p className="text-gray-500 text-center mb-6">How many items do you need?</p>

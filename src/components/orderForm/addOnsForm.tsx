@@ -16,6 +16,7 @@ import { useOrderFormStore } from '@/store/orderFormStore';
 export default function AddOnsForm() {
     const { order, updateField } = useOrderFormStore()
 
+    const [addOns, setAddOns] = React.useState<any[]>(order?.add_ons.length > 0 ? order.add_ons : AddOns);
 
     const upsertAddons = async (order: OrderInterface) => {
         try {
@@ -42,12 +43,12 @@ export default function AddOnsForm() {
                 <p>You can choose multiple add-ons below.</p>
             </div>
 
-            <div className='flex flex-wrap items-center justify-between gap-6 h-full w-full'>
-                {order.add_ons.map((item: any, idx: number) => {
+            <div className='grid grid-cols-3 h-full w-full gap-4 mt-5 pb-16'>
+                {addOns.map((item: any, idx: number) => {
                     return (
                         <div
                             key={idx}
-                            className={`w-[31%] h-[44%] p-2 border rounded-2xl text-center relative flex flex-col items-center justify-around gap-2 ${item.number > 0 ? "bg-red-100 border-red-500" : ""}`}
+                            className={` px-4 border rounded-2xl text-center relative flex flex-col items-center justify-around gap-2 ${item.number > 0 ? "bg-red-100 border-red-500" : ""}`}
                         >
                             {/* <div className={`w-3.5 h-3.5 rounded-full border absolute top-4 right-4 ${item.number > 0 ? "bg-primary" : "bg-gray-200"} `} /> */}
 
@@ -69,7 +70,7 @@ export default function AddOnsForm() {
                                     <CiCircleMinus />
                                 </div>
 
-                                <div>{item.number}</div>
+                                <div>{order.add_ons.some(i => i.title == item.title) ? order.add_ons.filter(i => i.title === item.title)[0].number : 0}</div>
 
                                 <div
                                     onClick={() => {
