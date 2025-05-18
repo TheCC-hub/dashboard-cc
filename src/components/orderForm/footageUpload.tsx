@@ -34,8 +34,9 @@ export default function FootageUploadForm() {
                                 value={order.raw_footage_url}
                                 onChange={(e) => updateField("raw_footage_url", e.target.value)}
                                 name='raw_footage_url'
-                                className='border border-gray-300 rounded-md p-2 w-[60%] bg-transparent outline-red-500'
+                                className='border border-gray-300 rounded-md p-2 w-[60%] bg-transparent outline-none focus:border-red-500'
                                 placeholder='Enter your URL here'
+                                required
                             />
                         </div>}
 

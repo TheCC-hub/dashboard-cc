@@ -22,6 +22,7 @@ const ToneIcons = [iFunny, iSerious, iProfessional, iElegant, iCasual, iInformat
 export default function StyleDetailsForm() {
     const { order, updateField } = useOrderFormStore()
 
+    useEffect(() => console.log(order.video_tone, "this is order in style details form"), [order.video_tone])
     return (
         <div className='w-full h-full'>
             {
@@ -68,6 +69,8 @@ export default function StyleDetailsForm() {
                                 <div className='grid grid-cols-4 gap-2 flex-wrap overflow-hidden w-full'>
                                     {Object.keys(order.video_tone).map((item, idx: number) => {
                                         const toneKey = item as keyof typeof order.video_tone;
+                                        console.log(toneKey, "this is tone key")
+                                        console.log(order.video_tone[toneKey], "this is tone value")
                                         return (
                                             <div
                                                 onClick={() => updateField("video_tone", { ...order.video_tone, [toneKey]: !order.video_tone[toneKey] })}

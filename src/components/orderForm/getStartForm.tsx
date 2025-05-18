@@ -9,7 +9,7 @@ import { useOrderFormStore } from '@/store/orderFormStore';
 
 export default function GetStartForm() {
     const { data: session } = useSession()
-    const { setCurrentStep, updatePartial } = useOrderFormStore()
+    const { setCurrentStep, updatePartial, order: defaultOrder } = useOrderFormStore()
 
     const [allOrders, setAllOrders] = useState<any>([])
 
@@ -67,11 +67,10 @@ export default function GetStartForm() {
                         <Image src={iOldOrder} alt='' className='w-16 ' />
                         Draft Order
                     </div>
-                    <div className='flex h-full flex-col w-full items-center justify-center gap-2 overflow-hidden overflow-y-scroll'>
+                    <div className='flex flex-col w-full items-center justify-center gap-2 overflow-hidden overflow-y-scroll'>
 
                         {/* old orders maped */}
                         {allOrders.length > 0 ? allOrders.slice(0, 5).map((order: any, idx: number) => {
-                            console.log(order, " this is order")
                             return (
                                 <div
                                     key={idx}
@@ -84,43 +83,46 @@ export default function GetStartForm() {
                                     <div className="flex gap-2">
                                         <button
                                             className="text-sm bg-green-400 text-white px-3 py-1 rounded hover:bg-green-600 cursor-pointer"
-                                            onClick={() => {
+                                            onClick={async () => {
+                                                const res = await fetch(`/api/order/${order.id}`, {
+                                                    method: "GET",
+                                                })
+                                                const data = await res.json()
+                                                console.log(data.data, "this is data")
                                                 updatePartial({
-                                                    order_id: order.id,
-                                                    order_type: order.orderType ? order.orderType : "",
+                                                    order_id: data.data.id,
+                                                    order_type: data.data.orderType ? data.data.orderType : "",
                                                     video_footage: {
-                                                        raw_footage_size: order.rawFootageSize ? order.rawFootageSize : "",
-                                                        raw_footage_length: order.rawFootageLength ? order.rawFootageLength : "",
+                                                        raw_footage_size: data.data.rawFootageSize ? data.data.rawFootageSize : "",
+                                                        raw_footage_length: data.data.rawFootageLength ? data.data.rawFootageLength : "",
                                                     },
-                                                    add_ons: order?.addOns ?
-                                                        Object.keys(order.addOns).map((key: any) => ({
-                                                            title: key,
-                                                            number: order.addOns[key] || 0,
-                                                        })) : [],
-
+                                                    add_ons: data.data.addOns ? Object.keys(data.data.addOns).map((key: any) => ({
+                                                        title: key,
+                                                        number: data.data.addOns[key] || 0,
+                                                    })) : [],
                                                     logistics: {
-                                                        video_title: order.videTitle ? order.videTitle : "",
-                                                        video_category: order.videoCategory ? order.videoCategory : "",
-                                                        video_description: order.videoDescription ? order.videoDescription : "",
-                                                        publish_date: order.publishDate ? order.publishDate : "",
-                                                        final_length: order.finalLength ? order.finalLength : "",
+                                                        video_title: data.data.videTitle ? data.data.videTitle : "",
+                                                        video_category: data.data.videoCategory ? data.data.videoCategory : "",
+                                                        video_description: data.data.videoDescription ? data.data.videoDescription : "",
+                                                        publish_date: data.data.publishDate ? data.data.publishDate : "",
+                                                        final_length: data.data.finalLength ? data.data.finalLength : "",
                                                     },
                                                     video_tone: {
-                                                        funny: order.funny,
-                                                        serious: order.serious,
-                                                        professional: order.professional,
-                                                        elegant: order.elegant,
-                                                        casual: order.casual,
-                                                        informational: order.informational,
-                                                        entertaining: order.entertaining
+                                                        funny: data.data.videoTone?.funny || false,
+                                                        serious: data.data.videoTone?.serious || false,
+                                                        professional: data.data.videoTone?.professional || false,
+                                                        elegant: data.data.videoTone?.elegant || false,
+                                                        casual: data.data.videoTone?.casual || false,
+                                                        informational: data.data.videoTone?.informational || false,
+                                                        entertaining: data.data.videoTone?.entertaining || false
                                                     },
-                                                    video_pace: order.videoPace ? order.videoPace : "",
+                                                    video_pace: data.data.videoPace ? data.data.videoPace : "",
                                                     order_details: {
-                                                        instruction_by_client: order.instructionByClient ? order.instructionByClient : "",
-                                                        example_videos: order.exampleVideos ? order.exampleVideos : "",
-                                                        script_link: order.scriptLink ? order.scriptLink : ""
+                                                        instruction_by_client: data.data.instructionByClient ? data.data.instructionByClient : "",
+                                                        example_videos: data.data.exampleVideos ? data.data.exampleVideos : "",
+                                                        script_link: data.data.scriptLink ? data.data.scriptLink : ""
                                                     },
-                                                    raw_footage_url: order.rawFootageUrl ? order.rawFootageUrl : "",
+                                                    raw_footage_url: data.data?.rawFootageUrl ? data.data.rawFootageUrl : "",
                                                 })
                                                 setCurrentStep(1)
                                             }}

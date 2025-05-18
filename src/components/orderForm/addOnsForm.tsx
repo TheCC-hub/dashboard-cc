@@ -15,7 +15,7 @@ import { useOrderFormStore } from '@/store/orderFormStore';
 
 export default function AddOnsForm() {
     const { order, updateField } = useOrderFormStore()
-
+    console.log(order, "this is order in add ons form")
     const [addOns, setAddOns] = React.useState<any[]>(order?.add_ons.length > 0 ? order.add_ons : AddOns);
 
     const upsertAddons = async (order: OrderInterface) => {
@@ -34,8 +34,6 @@ export default function AddOnsForm() {
         }
         return null;
     }
-
-
     return (
         <div className='w-full h-full'>
             <div className=''>
@@ -44,11 +42,11 @@ export default function AddOnsForm() {
             </div>
 
             <div className='grid grid-cols-3 h-full w-full gap-4 mt-5 pb-16'>
-                {addOns.map((item: any, idx: number) => {
+                {order.add_ons.map((item: any, idx: number) => {
                     return (
                         <div
                             key={idx}
-                            className={` px-4 border rounded-2xl text-center relative flex flex-col items-center justify-around gap-2 ${item.number > 0 ? "bg-red-100 border-red-500" : ""}`}
+                            className={` px-4 border rounded-2xl text-center relative flex flex-col items-center justify-around gap-2 ${item.number > 0 ? "bg-red-500 border-red-500" : ""}`}
                         >
                             {/* <div className={`w-3.5 h-3.5 rounded-full border absolute top-4 right-4 ${item.number > 0 ? "bg-primary" : "bg-gray-200"} `} /> */}
 
@@ -61,6 +59,11 @@ export default function AddOnsForm() {
                             <div className='flex items-center justify-center gap-x-4 mt-2'>
                                 <div
                                     onClick={() => {
+                                        // setAddOns((prev) => {
+                                        //     const newAddOns = [...prev]
+                                        //     newAddOns[idx].number = newAddOns[idx].number - 1
+                                        //     return newAddOns
+                                        // })
                                         updateField("add_ons", (order.add_ons).map((i: any) =>
                                             i.title === item.title ? { ...i, number: item.number - 1 } : i // Update only the matched item
                                         ));
@@ -70,10 +73,17 @@ export default function AddOnsForm() {
                                     <CiCircleMinus />
                                 </div>
 
-                                <div>{order.add_ons.some(i => i.title == item.title) ? order.add_ons.filter(i => i.title === item.title)[0].number : 0}</div>
+                                <div>{order.add_ons.find((i) => i.title === item.title)?.number || 0}</div>
+                                {/* <div>{addOns.find((i) => i.title == item.title).number}</div> */}
 
                                 <div
                                     onClick={() => {
+                                        // setAddOns((prev) => {
+                                        //     const newAddOns = [...prev]
+                                        //     const newNumb = (newAddOns[idx].number + 1)
+                                        //     newAddOns[idx].number = newNumb
+                                        //     return newAddOns
+                                        // })
                                         updateField("add_ons", (order.add_ons).map((i: any) =>
                                             i.title === item.title ? { ...i, number: item.number + 1 } : i // Update only the matched item
                                         ));

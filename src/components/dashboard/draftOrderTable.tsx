@@ -1,4 +1,5 @@
 import { formatDate } from '@/utils/helper-functions'
+import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 
@@ -65,7 +66,9 @@ export default function DraftOrdersTable() {
                             orders.map((order, i) => (
                                 <tr key={i} className="align-top">
                                     <td className="px-6 py-3 text-gray-50">{order.id.slice(0, 3)}...{order.id.slice(-3)}</td>
-                                    <td className="px-6 py-3 text-gray-50">{order.videTitle ? order.videTitle : "No Title is Provided"}</td>
+                                    {/* <td className="px-6 py-3 text-gray-50">{order.videTitle ? order.videTitle : "No Title is Provided"}</td> */}
+                                    <td className="px-6 py-3 text-gray-50"><Link className='hover:underline hover:text-red-500' href={`/order/${order.id}`} target='_blanck'>{order.videTitle ? order.videTitle : "No Title is Provided"}</Link></td>
+
                                     <td className="px-6 py-3 text-gray-50">{order.orderType}</td>
                                     <td className="px-6 py-3 text-gray-50">{formatDate(order.createdAt)}</td>
                                     <td className="px-6 py-1 text-gray-50 flex items-center justify-start">

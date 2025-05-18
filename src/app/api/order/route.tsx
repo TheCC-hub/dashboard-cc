@@ -6,7 +6,7 @@ import { OrderInterface } from "@/types/order.type";
 
 export async function POST(req: NextRequest) {
     const { order } = await req.json();
-
+    console.log(order, "this is order in route.tsx")
     const session = await getServerSession(authOptions)
 
     if (!session || !session.user || !session.user.email) {
