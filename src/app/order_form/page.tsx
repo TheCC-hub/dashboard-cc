@@ -17,6 +17,7 @@ import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import AuthPage from '@/components/auth';
 import { useOrderFormStore } from '@/store/orderFormStore';
+import UserProfile from '@/components/userProfile';
 
 
 export default function OrderForm() {
@@ -58,41 +59,41 @@ export default function OrderForm() {
             if (res.ok) {
                 console.log(data)
                 updatePartial({
-                    order_id: data.data[0].id,
-                    order_type: data.data[0].orderType ? data.data[0].orderType : "",
+                    order_id: data.data.id,
+                    order_type: data.data.orderType ? data.data.orderType : "",
                     video_footage: {
-                        raw_footage_size: data.data[0].rawFootageSize ? data.data[0].rawFootageSize : "",
-                        raw_footage_length: data.data[0].rawFootageLength ? data.data[0].rawFootageLength : "",
+                        raw_footage_size: data.data.rawFootageSize ? data.data.rawFootageSize : "",
+                        raw_footage_length: data.data.rawFootageLength ? data.data.rawFootageLength : "",
                     },
                     add_ons:
-                        Object.keys(data.data[0].addOns).map((key: any) => ({
+                        Object.keys(data.data.addOns).map((key: any) => ({
                             title: key,
-                            number: data.data[0].addOns[key] || 0,
+                            number: data.data.addOns[key] || 0,
                         })),
 
                     logistics: {
-                        video_title: data.data[0].videTitle ? data.data[0].videTitle : "",
-                        video_category: data.data[0].videoCategory ? data.data[0].videoCategory : "",
-                        video_description: data.data[0].videoDescription ? data.data[0].videoDescription : "",
-                        publish_date: data.data[0].publishDate ? data.data[0].publishDate : "",
-                        final_length: data.data[0].finalLength ? data.data[0].finalLength : "",
+                        video_title: data.data.videTitle ? data.data.videTitle : "",
+                        video_category: data.data.videoCategory ? data.data.videoCategory : "",
+                        video_description: data.data.videoDescription ? data.data.videoDescription : "",
+                        publish_date: data.data.publishDate ? data.data.publishDate : "",
+                        final_length: data.data.finalLength ? data.data.finalLength : "",
                     },
                     video_tone: {
-                        funny: data.data[0].funny,
-                        serious: data.data[0].serious,
-                        professional: data.data[0].professional,
-                        elegant: data.data[0].elegant,
-                        casual: data.data[0].casual,
-                        informational: data.data[0].informational,
-                        entertaining: data.data[0].entertaining
+                        funny: data.data.funny,
+                        serious: data.data.serious,
+                        professional: data.data.professional,
+                        elegant: data.data.elegant,
+                        casual: data.data.casual,
+                        informational: data.data.informational,
+                        entertaining: data.data.entertaining
                     },
-                    video_pace: data.data[0].videoPace ? data.data[0].videoPace : "",
+                    video_pace: data.data.videoPace ? data.data.videoPace : "",
                     order_details: {
-                        instruction_by_client: data.data[0].instructionByClient ? data.data[0].instructionByClient : "",
-                        example_videos: data.data[0].exampleVideos ? data.data[0].exampleVideos : "",
-                        script_link: data.data[0].scriptLink ? data.data[0].scriptLink : ""
+                        instruction_by_client: data.data.instructionByClient ? data.data.instructionByClient : "",
+                        example_videos: data.data.exampleVideos ? data.data.exampleVideos : "",
+                        script_link: data.data.scriptLink ? data.data.scriptLink : ""
                     },
-                    raw_footage_url: data.data[0].rawFootageUrl ? data.data[0].rawFootageUrl : "",
+                    raw_footage_url: data.data.rawFootageUrl ? data.data.rawFootageUrl : "",
                 })
                 setCurrentStep(1)
 
@@ -126,20 +127,7 @@ export default function OrderForm() {
                             </div>
                         </div>
                         {/* user profile  */}
-                        <div className='w-full flex items-end justify-center mt-10'>
-                            <div className='flex items-center justify-center gap-3 relative'>
-                                <div
-                                    className='w-8 h-8 rounded-full overflow-hidden cursor-pointer hover:border-2 border-primary'
-                                >
-                                    {session?.user?.image ?
-                                        <Image src={session?.user?.image} alt='icon' width={500} height={500} /> :
-                                        <FaRegUser />
-                                    }
-                                </div>
-                                <span className="text-lg font-semibold">{session?.user?.name}</span>
-
-                            </div>
-                        </div>
+                        <UserProfile />
                     </div>
 
                     <div className='w-full h-full relative px-10 py-6 bg-[var(--color-background-2)]'>

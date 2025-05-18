@@ -22,6 +22,7 @@ const ToneIcons = [iFunny, iSerious, iProfessional, iElegant, iCasual, iInformat
 export default function StyleDetailsForm() {
     const { order, updateField } = useOrderFormStore()
 
+    useEffect(() => console.log(order.video_tone, "this is order in style details form"), [order.video_tone])
     return (
         <div className='w-full h-full'>
             {
@@ -47,14 +48,14 @@ export default function StyleDetailsForm() {
                         </div>
                         <div className='w-full flex flex-col items-center justify-between gap-6 mt-4'>
                             <div className='w-full'>
-                                <p className='font-semibold text-gray-500'>What should be the pacing be?</p>
+                                <p className='font-semibold text-gray-200 mb-2'>What should be the pacing be?</p>
                                 <div className='flex items-center justify-between gap-2 h-full'>
                                     {Pace.map((item, idx) => {
                                         return (
                                             <div
                                                 onClick={() => updateField("video_pace", item.pace)}
                                                 key={idx}
-                                                className={`w-full rounded-2xl border h-[200px] flex flex-col gap-4 items-center justify-center cursor-pointer hover:shadow-md ${order.video_pace === item.pace ? "bg-red-500/50 border-red-600" : ""}`}
+                                                className={`w-full rounded-xl glow-border border flex py-3 gap-4 items-center justify-center cursor-pointer hover:shadow-md ${order.video_pace === item.pace ? "bg-[var(--color-brand-red)] border-red-400" : ""}`}
                                             >
                                                 <Image src={item.icon} alt='' className='w-12' />
                                                 <p className='text-lg font-semibold'>{item.pace}</p>
@@ -63,16 +64,18 @@ export default function StyleDetailsForm() {
                                 </div>
                             </div>
 
-                            <div className='w-full h-full relative'>
-                                <p className='font-semibold text-gray-500'>What should the tone be?</p>
-                                <div className='flex items-center justify-between gap-2 overflow-hidden overflow-x-scroll w-full'>
+                            <div className='w-full h-full relative mt-1'>
+                                <p className='font-semibold text-gray-200 mb-2'>What should the tone be?</p>
+                                <div className='grid grid-cols-4 gap-2 flex-wrap overflow-hidden w-full'>
                                     {Object.keys(order.video_tone).map((item, idx: number) => {
                                         const toneKey = item as keyof typeof order.video_tone;
+                                        console.log(toneKey, "this is tone key")
+                                        console.log(order.video_tone[toneKey], "this is tone value")
                                         return (
                                             <div
                                                 onClick={() => updateField("video_tone", { ...order.video_tone, [toneKey]: !order.video_tone[toneKey] })}
                                                 key={idx}
-                                                className={`min-w-[30%] rounded-2xl border h-[250px] flex flex-col gap-4 items-center justify-center cursor-pointer hover:shadow-md ${Object.values(order.video_tone)[idx] ? "bg-red-500/50 border-red-600" : ""}`}
+                                                className={`rounded-xl glow-border border py-12 flex flex-col gap-4 items-center justify-center cursor-pointer hover:shadow-md ${Object.values(order.video_tone)[idx] ? "bg-[var(--color-brand-red)] border-red-400" : ""}`}
                                             >
                                                 <Image src={ToneIcons[idx]} alt='' className='w-12' />
                                                 <p className='capitalize text-lg font-semibold'>{toneKey}</p>

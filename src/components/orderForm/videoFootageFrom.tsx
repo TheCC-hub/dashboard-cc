@@ -13,7 +13,7 @@ export default function VideoFootageFrom() {
                 <p >What are the specifications of your raw footage?</p>
             </div>
 
-            <div className='flex flex-col bg-white mt-10'>
+            <div className='flex flex-col mt-10'>
                 <label htmlFor="footageSize" className='text-sm font-semibold px-1 mb-1'>Raw Footage Size</label>
                 <select
                     className=' px-3 py-1 rounded-lg appearance-none bg-transparent border outline-none'
@@ -33,7 +33,7 @@ export default function VideoFootageFrom() {
                     <option value="more-120">More than 120 GB of new footage</option>
                 </select>
             </div>
-            <div className='flex flex-col bg-white mt-10'>
+            <div className='flex flex-col mt-10'>
                 <label htmlFor="footageSize" className='text-sm font-semibold px-1 mb-1'>Raw Footage Length</label>
                 <select
                     className=' px-3 py-1 rounded-lg appearance-none bg-transparent border outline-none'

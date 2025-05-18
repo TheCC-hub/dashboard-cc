@@ -1,14 +1,14 @@
 "use client"
 import Dashboard from "@/components/dashboard/renderComponent";
 import Sidebar from "@/components/navbar.tsx/sidebar";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { FaRegUser } from "react-icons/fa6";
-import { redirect, usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import AuthPage from "@/components/auth";
-import router from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import UserProfile from "@/components/userProfile";
 
 export default function Home() {
   const { data: session, status } = useSession()
@@ -16,9 +16,18 @@ export default function Home() {
   const router = useRouter();
   const pathname = usePathname()
 
+  const [menuPopup, setMenuPopup] = useState(false);
+
   const authMode = searchParams.get("auth");
   const notAuthenticated = authMode === "login" || authMode === "signup";
 
+  useEffect(() => {
+    if (session && status === "authenticated") {
+      const params = new URLSearchParams(searchParams.toString());
+      params.set("nav", "Active Orders");
+      router.replace(`${pathname}?${params.toString()}`);
+    }
+  }, [session, status]);
 
   useEffect(() => {
     if (!session && status !== "loading" && !authMode) {
@@ -53,21 +62,9 @@ export default function Home() {
             <Sidebar />
           </div>
         </div>
-        {/* user profile  */}
-        <div className='w-full flex items-end justify-center mt-10'>
-          <div className='flex items-center justify-center gap-3 relative'>
-            <div
-              className='w-8 h-8 rounded-full overflow-hidden cursor-pointer hover:border-2 border-primary'
-            >
-              {session?.user?.image ?
-                <Image src={session?.user?.image} alt='icon' width={500} height={500} /> :
-                <FaRegUser />
-              }
-            </div>
-            <span className="text-lg font-semibold">{session?.user?.name}</span>
 
-          </div>
-        </div>
+        {/* user profile  */}
+        <UserProfile />
       </div>
 
       <div className="w-full min-h-screen">
