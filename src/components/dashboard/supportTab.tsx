@@ -4,13 +4,6 @@ import { useState } from 'react';
 import { Mail, MessageSquare, PhoneCall, Plus, Minus } from 'lucide-react';
 import Link from 'next/link';
 
-const faqs = [
-    { question: 'What are Edit Credits?', answer: 'Edit Credits are tokens used for requesting video edits.' },
-    { question: 'When do my Edit Credits expire?', answer: 'Credits expire 30 days after purchase.' },
-    { question: 'How do I buy more Edit Credits?', answer: 'Go to your dashboard and click “Buy Credits”.' },
-    { question: 'How do I download my video?', answer: 'You can download it from your project delivery page.' },
-];
-
 export default function ContactAndFAQ() {
     const [openIndex, setOpenIndex] = useState<number | null>(null);
 
@@ -74,3 +67,58 @@ export default function ContactAndFAQ() {
         </div>
     );
 }
+
+export const faqs = [
+    {
+        question: "What is ClipCurve?",
+        answer: "ClipCurve is a professional video editing and growth service for content creators. We turn your raw footage or long-form videos into polished vertical and horizontal content ready for YouTube, Shorts, TikTok, Reels, and more."
+    },
+    {
+        question: "Do you edit both vertical and horizontal videos?",
+        answer: "Yes! We specialize in both vertical (9:16) content for Shorts, Reels, and TikTok, and horizontal (16:9) videos for platforms like YouTube, webinars, and courses. You choose the format — or we can recommend what works best."
+    },
+    {
+        question: "How does the process work?",
+        answer: "After signing up, you upload your footage or share a video link. Our editors review the content, pick key moments, and deliver high-quality edits. You’ll be able to request revisions and approve the final cut."
+    },
+    {
+        question: "Is the first vertical video really free?",
+        answer: "Yes! Your first vertical video is completely free — no commitment required. It's our way of showing you the quality of our work before you choose a plan."
+    },
+    {
+        question: "Can I submit horizontal footage for editing?",
+        answer: "Absolutely. We accept all aspect ratios and tailor our editing based on where you want to publish — YouTube, Shorts, Reels, TikTok, or others."
+    },
+    {
+        question: "How long does delivery take?",
+        answer: "Our standard delivery time is 1–3 business days per video, depending on complexity and plan. Express delivery is available if needed."
+    },
+    {
+        question: "Can I request revisions?",
+        answer: "Yes, we offer 1–2 rounds of revisions depending on your selected package. We want to make sure you’re completely satisfied."
+    },
+    {
+        question: "Do I need to provide timestamps or clips?",
+        answer: "You can provide timestamps if you have specific moments in mind, or let our editors pick the highlights based on engagement potential and trends."
+    },
+    {
+        question: "Do you add captions, effects, and motion graphics?",
+        answer: "Yes! All videos include stylized captions and optional motion effects like zooms, transitions, emojis, and on-screen text to boost engagement."
+    },
+    {
+        question: "What formats do you deliver?",
+        answer: "We deliver final videos in the format you choose: vertical (9:16), horizontal (16:9), or square (1:1) — all optimized for the platform you’re targeting."
+    },
+    {
+        question: "How do I subscribe or change my plan?",
+        answer: "You can explore and subscribe to any of our plans from the pricing page. To upgrade or downgrade your current plan, just log in to your dashboard or reach out to support."
+    },
+    {
+        question: "Can I cancel anytime?",
+        answer: "Yes, you can cancel, pause, or change your subscription at any time directly from your dashboard — no questions asked."
+    },
+    {
+        question: "How do I contact support?",
+        answer: "You can reach us via the social links in team chat on our website or email us at theclipcurve@gmail.com. We usually respond within 24 hours."
+    }
+];
