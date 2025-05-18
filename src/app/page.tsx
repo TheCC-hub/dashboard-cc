@@ -16,18 +16,16 @@ export default function Home() {
   const router = useRouter();
   const pathname = usePathname()
 
-  const [menuPopup, setMenuPopup] = useState(false);
 
   const authMode = searchParams.get("auth");
   const notAuthenticated = authMode === "login" || authMode === "signup";
 
   useEffect(() => {
-    if (session && status === "authenticated") {
-      const params = new URLSearchParams(searchParams.toString());
-      params.set("nav", "Active Orders");
-      router.replace(`${pathname}?${params.toString()}`);
+    const navParam = searchParams.get('nav');
+    if (pathname === '/' && navParam === null) {
+      router.replace('/?nav=Active%20Orders');
     }
-  }, [session, status]);
+  }, [pathname, searchParams, router]);
 
   useEffect(() => {
     if (!session && status !== "loading" && !authMode) {
